@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grupos</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
+
+</head>
+
+<style>
+
+    /*Espaço entre os menus*/
+          .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+          }
+    
+          .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+          }
+    
+          .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+          }
+    
+          #menu a:hover{
+              background-color: #B4E128;
+    
+          }
+    
+        </style>
+<body>
+
+    <svg style="display: none; ">
+
+        <symbol id="home" viewBox="0 0 16 16">
+          <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path>
+        </symbol>
+    </svg>
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <h1 class="text-center">Notícias Universitárias</h1>
+            </div>
+
+            <ul class="nav nav-pills flex-column mb-auto" id="menu">
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white" aria-current="page">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                    Notícias
+                  </a>
+                </li>
+          
+                <li>
+                  <a href="#" class="nav-link text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                        </svg>
+                    Notificação
+                  </a>
+                </li>
+                <li>
+                  <a href="grupo_aluno.html" class="nav-link text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+                          <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z"/>
+                          <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z"/>
+                        </svg>
+                    Favoritos
+                  </a>
+                </li>
+                <li>
+                  <a href="lista_grupo_aluno.html" class="nav-link text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                          <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                          <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                          <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                    Grupos
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="#" class="nav-link text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewBox="0 0 16 16">
+                          <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                          <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    Sair
+                  </a>
+                </li>
+              </ul>
+
+        </div>
+    </header>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Pesquisar" aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>                                
+                    </form>
+                </div>                
+            </div> 
+            
+            
+            <div class="row tm-row">
+                <div class="col-12">
+                    <hr class="tm-hr-primary tm-mb-55">
+                    
+                    <h1 class="tm-mb-40 tm-post-title tm-color-primary"> Turma: CCT302</h1>
+                </div>
+            </div>
+            <div class="row tm-row">
+                <div class="col-lg-8 tm-post-col">
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">Título</h2>
+                            <p class="tm-mb-40">Data</p>
+                            <p>
+                                Conteúdo
+                            </p>
+                            <span class="d-block text-right tm-color-primary">70 visualizações</span>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">Título</h2>
+                            <p class="tm-mb-40">Data</p>
+                            <p>
+                                Conteúdo
+                            </p>
+                            <span class="d-block text-right tm-color-primary">120 visualizações</span>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">Título</h2>
+                            <p class="tm-mb-40">Data</p>
+                            <p>
+                                Conteúdo
+                            </p>
+                            <span class="d-block text-right tm-color-primary">200 visualizações</span>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">Título</h2>
+                            <p class="tm-mb-40">Data</p>
+                            <p>
+                                Conteúdo
+                            </p>
+                            <span class="d-block text-right tm-color-primary">150 visualizações</span>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                
+            </div>
+            
+        </main>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

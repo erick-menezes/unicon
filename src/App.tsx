@@ -1,8 +1,23 @@
-import { Spinner } from '@chakra-ui/react'
+import { ChakraProvider } from "@chakra-ui/react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import { theme } from "./styles/theme";
+
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   return (
-    <Spinner height={100} width={100} color="green.700" />
+    <ChakraProvider theme={theme}>      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   );
 }
 

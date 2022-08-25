@@ -1,9 +1,10 @@
 import { extendTheme } from '@chakra-ui/react';
-import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
+import { StyleFunctionProps } from '@chakra-ui/theme-tools';
 
 export const theme = extendTheme({
     colors: {
         "app-primary": "#63E1FD",
+        "app-primary-dark": "#51B8CF",
     },
     fonts: {
         heading: `'Inter', sans-serif`,

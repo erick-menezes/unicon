@@ -1,0 +1,17 @@
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #999999 !important;
+}
+
+.mdc-text-field .mdc-line-ripple {
+    background: #999999 !important;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) {
+    width: 100%;
+    background: transparent !important; 
+
+    &:hover,
+    &::before {
+        background: transparent !important; 
+    }
+}

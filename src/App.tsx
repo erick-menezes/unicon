@@ -7,14 +7,16 @@ import {
 
 import { theme } from "./styles/theme";
 
-import { LoginPage } from "./pages/LoginPage";
+import { Landing } from "./pages/Landing";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>      
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

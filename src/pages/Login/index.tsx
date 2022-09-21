@@ -1,5 +1,6 @@
 import { Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
 
+import { useNavigate } from "react-router-dom";
 import { LandingContainer } from "../../components/Landing/LandingContainer";
 
 import '@material/react-text-field/index.scss';
@@ -7,14 +8,16 @@ import '@material/react-text-field/index.scss';
 import { useForm } from "react-hook-form";
 import { InputText } from "../../components/commons/form/InputText";
 import { StyledButton } from "../../components/commons/StyledButton";
-import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
-export function Register() {
+export function Login() {
     const { control, handleSubmit } = useForm();
     const isMobile = useBreakpointValue({ base: true, xl: false });
+    const navigate = useNavigate();
 
     function onSubmit(model: any) {
+        navigate('/profile');
         console.log(model);
     }
 
@@ -30,13 +33,7 @@ export function Register() {
                 maxWidth={500}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Heading as="h1" fontSize={isMobile ? 25 : 30}>Preencha as informações para efetuar o seu cadastro</Heading>
-
-                <InputText
-                    control={control}
-                    name="name"
-                    label="Nome"
-                />
+                <Heading as="h1" fontSize={isMobile ? 25 : 30}>Insira suas informações para realizar o login</Heading>
 
                 <InputText
                     control={control}
@@ -48,13 +45,12 @@ export function Register() {
                     control={control}
                     name="password"
                     label="Senha"
-                    type="password"
                 />
 
                 <StyledButton type="submit">
-                    Finalizar cadastro
+                    Entrar
                 </StyledButton>
-
+                
                 <Text
                     as={Link}
                     to="/"

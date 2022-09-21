@@ -24,7 +24,7 @@ export function Landing() {
 
                 <Text
                     as={Link}
-                    to="/"
+                    to="/login"
                     color="app-primary"
                     fontWeight="600"
                     _hover={{

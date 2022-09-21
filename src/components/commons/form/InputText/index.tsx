@@ -3,6 +3,7 @@ import { InputHTMLAttributes } from 'react';
 import { Control, Controller, FieldValues } from "react-hook-form";
 import TextField, { Input } from '@material/react-text-field';
 
+import './styles.scss';
 
 interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
     control: Control<FieldValues, any>;

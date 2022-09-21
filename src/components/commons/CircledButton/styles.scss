@@ -1,0 +1,8 @@
+.button_default {
+    transition: all .3s;
+
+    &:hover {
+        filter: brightness(0.90);
+        transform: scale(1.2);
+    }
+}

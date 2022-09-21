@@ -5,6 +5,8 @@ export const theme = extendTheme({
     colors: {
         "app-primary": "#63E1FD",
         "app-primary-dark": "#51B8CF",
+        "app-yellow": "#FEDB41",
+        "app-lightgray": "#999999",
     },
     fonts: {
         heading: `'Inter', sans-serif`,

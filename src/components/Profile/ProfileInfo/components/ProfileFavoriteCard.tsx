@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
 
-import { CircledButton } from '../../commons/CircledButton';
+import { CircledButton } from '../../../commons/CircledButton';
 import { Link } from 'react-router-dom';
 
 interface FavoriteCardData {

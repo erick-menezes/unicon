@@ -1,45 +1,111 @@
+import { useKeenSlider } from "keen-slider/react";
+
 import { GroupCard } from "../../commons/GroupCard";
-import { ProfileInfoSection } from "./ProfileInfoSection";
-import { ProfileInfoField } from "./ProfileInfoField";
+import { ProfileInfoSection } from "./components/ProfileInfoSection";
+import { ProfileInfoField } from "./components/ProfileInfoField";
+import { ProfileFavoriteCard } from "./components/ProfileFavoriteCard";
 
 import { Flex, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
-import { ProfileFavoriteCard } from "./ProfileFavoriteCard";
+
+import './styles.scss';
+
+import "keen-slider/keen-slider.min.css"
+import { CircledButton } from "../../commons/CircledButton";
 
 export function ProfileInfo() {
+    const [sliderRef] = useKeenSlider<HTMLDivElement>({
+        mode: "free-snap",
+        slides: {
+            perView: 3,
+            spacing: 30,
+        }
+    })
     const isMobile = useBreakpointValue({ base: true, xl: false });
     
     return (
         <Flex as="section" paddingTop={isMobile ? 40 : 190} paddingLeft={isMobile ? 10 : 16} width="100%">
-            <Flex flexDirection="column">
+            <Flex flexDirection="column" width="100%">
                 <ProfileInfoSection title="Informações" gap={isMobile ? 10 : 20}>
                     <ProfileInfoField fieldName="Nome" fieldData="Lucas Xavier" />
                     <ProfileInfoField fieldName="E-mail" fieldData="201602772843@alunos.estacio.br" />
                     <ProfileInfoField fieldName="Senha" fieldData="*********" />
                 </ProfileInfoSection>
 
-                <ProfileInfoSection title="Seguindo" gap={isMobile ? 10 : 20}>
-                    <GroupCard 
-                        title="ADS" 
-                        postsAmount={33} 
-                        groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png" 
+                <ProfileInfoSection title="Seguindo" gap={isMobile ? 10 : 20} position="relative">
+
+                    <Flex ref={sliderRef} className="keen-slider" width="100%" paddingLeft={10}>
+                        <GroupCard 
+                            title="ADS" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+
+                        <GroupCard 
+                            title="ADM" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+
+                        <GroupCard 
+                            title="Sistemas de Informação e algumas coisas mais explicadas" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+                        <GroupCard 
+                            title="Sistemas de Informação e algumas coisas mais explicadas" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+                        <GroupCard 
+                            title="Sistemas de Informação e algumas coisas mais explicadas" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+                        <GroupCard 
+                            title="Sistemas de Informação e algumas coisas mais explicadas" 
+                            postsAmount={33} 
+                            groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png"
+                            className="keen-slider__slide groupCardCarousel"
+                        />
+                    </Flex>
+
+                    <CircledButton 
+                        icon="akar-icons:chevron-left"
+                        position="absolute"
+                        top="50%"
+                        transform="translateY(-50%)"
+                        background="app-yellow"
+                        _hover={{
+                            filter: "brightness(0.9)"
+                        }}
+                        _active={{
+                            filter: "brightness(0.9)"
+                        }}
                     />
 
-                    <GroupCard 
-                        title="ADM" 
-                        postsAmount={33} 
-                        groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png" 
+                    <CircledButton 
+                        icon="akar-icons:chevron-right"
+                        position="absolute"
+                        top="50%"
+                        transform="translateY(-50%)"
+                        right="0"
+                        background="app-yellow"
+                        _hover={{
+                            filter: "brightness(0.9)"
+                        }}
+                        _active={{
+                            filter: "brightness(0.9)"
+                        }}
                     />
-
-                    <GroupCard 
-                        title="Sistemas de Informação e algumas coisas mais explicadas" 
-                        postsAmount={33} 
-                        groupImage="https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png" 
-                    />
-                    
                 </ProfileInfoSection>
 
                 <ProfileInfoSection title="Favoritos" gap={isMobile ? 10 : 20}>
-                    <Grid placeItems="flex-end" templateColumns={isMobile ? "1fr" : "repeat(3, 1fr)"} columnGap={4} rowGap={10} width="100%">
+                    <Grid placeItems="flex-end" templateColumns={isMobile ? "1fr" : "repeat(3, 1fr)"} columnGap={4} rowGap={10}>
                         <GridItem w="100%">
                             <ProfileFavoriteCard 
                                 data={{

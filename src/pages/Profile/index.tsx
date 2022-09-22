@@ -9,7 +9,7 @@ export function Profile() {
 
     return (
         <Flex flexDirection={isMobile ? 'column' : 'row'}>
-            <Flex height="100%" flexDirection="column" width="100%">
+            <Flex height="100%" flexDirection="column" width={isMobile ? "100%" : "70%"}>
                 <ProfileHeader />
                 <ProfileInfo />
             </Flex>

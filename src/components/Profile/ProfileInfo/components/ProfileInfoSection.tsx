@@ -1,4 +1,4 @@
-import { HeadingStyled } from "../../commons/HeadingStyled";
+import { HeadingStyled } from "../../../commons/HeadingStyled";
 import { Flex, FlexProps, useBreakpointValue } from "@chakra-ui/react";
 
 interface ProfileInfoHeaderProps extends FlexProps {

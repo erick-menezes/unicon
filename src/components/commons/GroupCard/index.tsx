@@ -1,16 +1,16 @@
-import { Box, Button, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Flex, FlexProps, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
 import 'keen-slider/keen-slider.min.css';
 
 
-interface GroupCardProps {
+interface GroupCardProps extends FlexProps {
     title: string;
     postsAmount: number;
     groupImage: string;
 }
 
-export function GroupCard({ title, postsAmount, groupImage }: GroupCardProps) {
+export function GroupCard({ title, postsAmount, groupImage, ...rest }: GroupCardProps) {
     const isMobile = useBreakpointValue({ base: true, xl: false });
 
     function handleUnfollowGroup() {
@@ -18,7 +18,7 @@ export function GroupCard({ title, postsAmount, groupImage }: GroupCardProps) {
     }
 
     return (
-        <Flex justifyContent="space-between" width={isMobile ? '90%' : '100%'} maxWidth="500px" alignItems="center">
+        <Flex justifyContent="space-between" width={isMobile ? '90%' : '100%'} alignItems="center" {...rest} maxWidth="400px">
             <Flex columnGap={4} alignItems="center">
                 <Box>
                     <Image objectFit="cover" maxWidth={16} height="auto" src={groupImage} alt={title} />

@@ -17,7 +17,7 @@ export function Login() {
     const navigate = useNavigate();
 
     function onSubmit(model: any) {
-        navigate('/profile');
+        navigate('/home');
         console.log(model);
     }
 
@@ -54,7 +54,7 @@ export function Login() {
                 <Text
                     as={Link}
                     to="/"
-                    color="app-primary"
+                    color="blue.300"
                     fontWeight="600"
                     _hover={{
                         textDecoration: "underline",

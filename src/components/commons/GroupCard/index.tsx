@@ -2,31 +2,45 @@ import { Box, Button, Flex, FlexProps, Image, Text, useBreakpointValue } from "@
 import { Icon } from "@iconify/react";
 
 import 'keen-slider/keen-slider.min.css';
+import { Link } from "react-router-dom";
 
-
-interface GroupCardProps extends FlexProps {
-    title: string;
+interface GroupCardData {
+    id: string;
+    title: string; 
     postsAmount: number;
     groupImage: string;
 }
 
-export function GroupCard({ title, postsAmount, groupImage, ...rest }: GroupCardProps) {
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+interface GroupCardProps extends FlexProps {
+    data: GroupCardData;
+}
 
+export function GroupCard({ data, ...rest }: GroupCardProps) {
     function handleUnfollowGroup() {
-        console.log('Deixou de seguir o grupo ' + title);
+        console.log('Deixou de seguir o grupo ' + data.title);
     }
 
     return (
-        <Flex justifyContent="space-between" width={isMobile ? '90%' : '100%'} alignItems="center" {...rest} maxWidth="400px">
+        <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            minWidth="300px"
+            {...rest}
+        >
             <Flex columnGap={4} alignItems="center">
                 <Box>
-                    <Image objectFit="cover" maxWidth={16} height="auto" src={groupImage} alt={title} />
+                    <Image
+                        objectFit="cover"
+                        maxWidth={16}
+                        height="auto"
+                        src={data.groupImage}
+                        alt={data.title}
+                    />
                 </Box>
                 
                 <Flex flexDirection="column" rowGap={0.5}>
-                    <Text fontSize="lg" noOfLines={1}>{title}</Text>
-                    <Text fontSize="md">{postsAmount} postagens</Text>
+                    <Text as={Link} to={`/groups/${data.id}`} fontSize="lg" noOfLines={1} title={data.title}>{data.title}</Text>
+                    <Text fontSize="md">{data.postsAmount} postagens</Text>
                 </Flex>
             </Flex>
 

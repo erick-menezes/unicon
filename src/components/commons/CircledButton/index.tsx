@@ -10,15 +10,15 @@ interface CircledButtonProps extends ButtonProps {
 export function CircledButton({ icon, ...rest }: CircledButtonProps) {
     return (
         <Button
-            background="app-primary"
+            background="blue.500"
             borderRadius="100%"
             width="55px"
             height="55px"
             _hover={{
-                background: "app-primary-dark",
+                background: "blue.800",
             }}
             _active={{
-                background: "app-primary-dark"
+                background: "blue.800"
             }}
             {...rest}
         >

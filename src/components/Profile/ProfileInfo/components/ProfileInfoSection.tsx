@@ -19,7 +19,6 @@ export function ProfileInfoSection({ title, children, ...rest }: ProfileInfoHead
                 alignItems="flex-start"
                 flexDirection={isMobile ? 'column' : 'row'} 
                 fontSize="lg"
-                width="100%"
                 {...rest}
             >
                 {children}

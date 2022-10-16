@@ -14,6 +14,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "firebase": "^9.10.0",
     "framer-motion": "^6.5.1",
     "keen-slider": "^6.8.2",
     "react": "^18.2.0",
@@ -50,5 +51,8 @@
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2"
+  },
+  "browser": {
+    "crypto": false
   }
 }

@@ -2,15 +2,71 @@ import { extendTheme } from '@chakra-ui/react';
 import { StyleFunctionProps } from '@chakra-ui/theme-tools';
 
 export const theme = extendTheme({
+    components: {
+        Text: {
+            baseStyle: {},
+            sizes: {
+                sm: {
+                    fontSize: "14px",
+                },
+                md: {
+                    fontSize: "16px",
+                },
+                lg: {
+                    fontSize: "18px",
+                },
+            },
+            variants: {},
+            defaultProps: {
+                size: "md",
+                colorScheme: "gray.800"
+            }
+        },
+        Heading: {
+            baseStyle: {},
+            sizes: {
+                sm: {
+                    fontSize: "26px",
+                },
+                md: {
+                    fontSize: "34px",
+                },
+                lg: {
+                    fontSize: "42px",
+                },
+            },
+            variants: {},
+            defaultProps: {
+                size: "md",
+                colorScheme: "gray.800"
+            }
+        }
+    },
     colors: {
-        "app-primary": "#63E1FD",
-        "app-primary-dark": "#51B8CF",
-        "app-yellow": "#FEDB41",
-        "app-lightgray": "#999999",
+        "red": "#FF0000",
+        
+        "yellow": {
+            800: "#FEDB41",
+        },
+        
+        "blue": {
+            100: "#D0F6FE",
+            300: "#88E9FF",
+            500: "#63E1FD",
+            800: "#51B8CF",
+        },
+        "gray": {
+            100: "#EFEFEF",
+            200: "#C4C4C4",
+            300: "#999999",
+            800: "#333333",
+        },
     },
     fonts: {
-        heading: `'Inter', sans-serif`,
-        body: `'Inter', sans-serif`,
+        // heading: "Inter, sans-serif",
+        heading: "Quicksand, sans-serif",
+        // body: "Inter, sans-serif",
+        body: "Quicksand, sans-serif",
     },
     styles: {
         global: (props: StyleFunctionProps) => ({
@@ -19,9 +75,9 @@ export const theme = extendTheme({
                 height: '100vh',
             },
             'body': {
-                fontFamily: 'body',
                 bg: 'white',
-                color: '#49484F',
+                color: 'gray.800',
+                overflowX: 'hidden',
             },
             '#root': {
                 height: '100%',

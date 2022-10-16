@@ -16,7 +16,7 @@ export function ProfileHeader() {
                     objectFit="cover"
                     maxWidth="100%"
                     height="auto"
-                    src={`${process.env.PUBLIC_URL}image.png`}
+                    src={`${process.env.PUBLIC_URL}assets/img/image.png`}
                     alt="Profile cover"
                     zIndex={0}
                 />
@@ -27,7 +27,7 @@ export function ProfileHeader() {
                 position="absolute"
                 bottom={showChangeCoverText ? 4 : 0}
                 right={showChangeCoverText ? 4 : 10}
-                background="app-primary"
+                background="blue.300"
                 boxShadow="0px 0px 10px 1px rgba(0, 0, 0, 0.25)"
                 color="white"
                 padding="5px 10px 5px 10px"

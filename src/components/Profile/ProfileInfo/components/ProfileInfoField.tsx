@@ -11,7 +11,7 @@ export function ProfileInfoField({ fieldName, fieldData, isFieldEditable }: Prof
     return (
         <Flex alignItems="center" justifyContent="space-between">
             <Flex flexDirection="column" rowGap={1} marginRight={10}>
-                <Text color="app-lightgray">
+                <Text color="gray.200">
                     {fieldName}
                 </Text>
                 <Text>
@@ -21,16 +21,16 @@ export function ProfileInfoField({ fieldName, fieldData, isFieldEditable }: Prof
 
             {isFieldEditable && (
                 <Button
-                    background="app-primary"
+                    background="blue.500"
                     borderRadius="100%"
                     padding={2}
                     color="white"
                     transition="background .3s"
                     _hover={{
-                        background: 'app-primary-dark'
+                        background: 'blue.800'
                     }}
                     _active={{
-                        background: "app-primary-dark",
+                        background: "blue.800",
                     }}
                 >
                     <Icon icon="ci:edit" fontSize={20} />

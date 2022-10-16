@@ -7,20 +7,32 @@ import {
 
 import { theme } from "./styles/theme";
 
+import { PageWithHeader } from "./components/commons/PageWithHeader";
+import { Home } from "./pages/Home";
 import { Landing } from "./pages/Landing";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
+import { Post } from "./pages/Post";
+import { Group } from "./pages/Group";
+import { Settings } from "./pages/Settings";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>      
       <BrowserRouter>
         <Routes>
+          <Route element={<PageWithHeader />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/:userName/posts/:postId" element={<Post />} />
+            <Route path="/groups/:groupId" element={<Group />} />
+          </Route>
+
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

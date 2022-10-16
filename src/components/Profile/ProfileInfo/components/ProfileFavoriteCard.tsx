@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Avatar, Box, BoxProps, Flex, Image, Text } from "@chakra-ui/react";
 
 import { CircledButton } from '../../../commons/CircledButton';
 import { Link } from 'react-router-dom';
@@ -11,17 +11,17 @@ interface FavoriteCardData {
     authorName: string;
     authorImage: string;
     title: string;
-    isFavorited: boolean;
 }
 
-interface ProfileFavoriteCardProps {
+interface ProfileFavoriteCardProps extends BoxProps {
     data: FavoriteCardData;
 }
 
-export function ProfileFavoriteCard({ data }: ProfileFavoriteCardProps) {
-    const [postIsFavorited, setPostIsFavorited] = useState<boolean>(() => data?.isFavorited && false);
+export function ProfileFavoriteCard({ data, ...rest }: ProfileFavoriteCardProps) {
+    const userFavoritePostsIdsStaticData = [data.postId];
+    const [postIsFavorited, setPostIsFavorited] = useState<boolean>(() => userFavoritePostsIdsStaticData.includes(data.postId));
 
-    function handleUnfavoritePost() {
+    function handleFavoritePost() {
         setPostIsFavorited((previousValue) => !previousValue);
     }
 
@@ -31,6 +31,7 @@ export function ProfileFavoriteCard({ data }: ProfileFavoriteCardProps) {
             background="gray.100"
             borderRadius="2rem"
             paddingBottom={4}
+            {...rest}
         >
             <Box width="100%" height={48} position="relative">
                 <Image 
@@ -47,17 +48,17 @@ export function ProfileFavoriteCard({ data }: ProfileFavoriteCardProps) {
                     position="absolute"
                     top="-10px"
                     right="-10px"
-                    onClick={handleUnfavoritePost}
-                    icon={postIsFavorited ? "ant-design:heart-outlined" : "ant-design:heart-filled"}
+                    onClick={handleFavoritePost}
+                    icon={postIsFavorited ? "ant-design:heart-filled" : "ant-design:heart-outlined"}
                 />
             </Box>
 
             <Text
                 as={Link}
-                to="#"
-                fontSize="xl"
+                to={`/${data.authorName.split(' ').map((name) => name.toLowerCase()).join('-')}/posts/${data.postId}`}
+                fontSize="lg"
                 fontWeight="bold"
-                noOfLines={1}
+                noOfLines={2}
                 title={data.title}
                 marginTop={4}
                 padding="0 1.5rem 0 1.5rem"

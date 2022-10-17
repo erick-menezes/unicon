@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { CircledButton } from "../CircledButton";
+import { StyledButton } from '../StyledButton';
 
 export type PostDataType = {
     postId: string;
@@ -25,7 +26,7 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
     }
 
     return (
-        <Flex flexDirection="column" gap={6}>
+        <Flex flexDirection="column" gap={6} width="100%">
             <Box position="relative">
                 <Image 
                     src={postData.postCover} 
@@ -33,10 +34,11 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                     height={220}
                     objectFit="cover"
                     objectPosition="50%"
-                    borderRadius={14}
+                    borderRadius={10}
                 />
 
                 <CircledButton
+                    title="Favoritar post"
                     type="button"
                     position="absolute"
                     top="-10px"
@@ -46,7 +48,10 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                 />
             </Box>
 
-            <Text fontSize="lg" fontWeight="bold">{postData.title}</Text>
+            <Flex alignItems="center" justifyContent="space-between">
+                <Text fontSize="lg" fontWeight="bold">{postData.title}</Text>
+                <Text fontWeight="semibold">300 curtidas</Text>
+            </Flex>
 
             <Flex
                 alignItems="center"
@@ -61,23 +66,28 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                     height={42}
                 />
 
-                <Text
-                    as={Link}
-                    to="#"
-                    fontSize="md"
-                    fontWeight="medium"
-                    noOfLines={1}
-                    title={postData.authorName}
-                    _hover={{
-                        textDecoration: "underline"
-                    }}
-                >
-                    {postData.authorName} 
-                    <Text as="b" marginLeft={1}>
-                        • há 2 dias
+                <Flex flexDirection="column">
+                    <Text
+                        as={Link}
+                        to="#"
+                        fontSize="md"
+                        fontWeight="bold"
+                        noOfLines={1}
+                        title={postData.authorName}
+                        _hover={{
+                            textDecoration: "underline"
+                        }}
+                    >
+                        {postData.authorName}
                     </Text>
-                </Text>
+
+                    <Text fontWeight="semibold" color="gray.300">
+                        há 2 dias
+                    </Text>
+                </Flex>
             </Flex>
+            
+            <StyledButton>Curtir</StyledButton>
         </Flex>
     );
 }

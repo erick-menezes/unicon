@@ -11,9 +11,9 @@ export function StyledButton({ children, ...rest }: StyledButtonProps) {
         <Button
             background="blue.500"
             color="white"
-            fontWeight="500"
             width="100%"
-            padding={7}
+            paddingTop={7}
+            paddingBottom={7}
             maxWidth={350}
             boxShadow="10px 10px 20px rgba(0, 0, 0, 0.12)"
             borderRadius={"xl"}

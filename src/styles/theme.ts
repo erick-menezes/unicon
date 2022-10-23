@@ -83,7 +83,20 @@ export const theme = extendTheme({
                 height: '100vh',
                 width: '100vw',
                 position: 'relative',
-            }
+            },
+            '::-webkit-scrollbar': {
+                width: '12px',
+            },
+            '::-webkit-scrollbar-track': {
+                borderRadius: '10px',
+            },
+            '::-webkit-scrollbar-thumb': {
+                background: 'blue.500',
+                borderRadius: '10px',
+            },
+            '::-webkit-scrollbar-thumb:hover': {
+                background: 'blue.800',
+            },
         }),
     },
 })

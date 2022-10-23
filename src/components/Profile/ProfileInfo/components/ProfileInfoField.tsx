@@ -14,7 +14,7 @@ export function ProfileInfoField({ fieldName, fieldData, isFieldEditable }: Prof
                 <Text color="gray.200">
                     {fieldName}
                 </Text>
-                <Text>
+                <Text size="lg">
                     {fieldData}
                 </Text>
             </Flex>
@@ -38,8 +38,4 @@ export function ProfileInfoField({ fieldName, fieldData, isFieldEditable }: Prof
             )}
         </Flex>
     );
-}
-
-ProfileInfoField.defaultProps = {
-    isFieldEditable: true,
 }

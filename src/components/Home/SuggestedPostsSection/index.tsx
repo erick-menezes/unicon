@@ -1,4 +1,6 @@
-import { favoritePostsStaticData } from "../../Profile/ProfileInfo";
+import { favoritePostsStaticData } from "../../Profile/ProfileInfo/mocks";
+
+import { Fragment } from "react";
 
 import { Divider, Flex, Heading } from "@chakra-ui/react";
 import { PostCardWithInteraction } from "../../commons/PostCardWithInteraction";
@@ -11,14 +13,13 @@ function SuggestedPostsSection() {
           
             <Flex flexDirection="column" gap={8}>
                 {favoritePostsStaticData.map((post) => (
-                    <>    
+                    <Fragment key={post.postId}>
                         <PostCardWithInteraction
-                            key={post.postId}
                             postData={post}
                         />
 
-                        <Divider />
-                    </>
+                        <Divider borderColor="gray.200" height="10px" />
+                    </Fragment>
                 ))}
             </Flex>
         </Flex>

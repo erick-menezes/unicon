@@ -58,13 +58,12 @@ export function ProfileHeader() {
 
                         <Flex
                             flexDirection="column"
-                            alignItems="center"
                             justifyContent="center"
-                            rowGap={2}
+                            rowGap={1}
                             marginTop={12}
                         >
-                            <Heading size="lg">Dan Abrahmov</Heading>
-                            <Text size="lg">Membro desde Janeiro 2022</Text>
+                            <Heading as="h2" size="md">Dan Abrahmov</Heading>
+                            <Text size="md">Membro desde Janeiro 2022</Text>
                         </Flex>
                     </Flex>
                 )

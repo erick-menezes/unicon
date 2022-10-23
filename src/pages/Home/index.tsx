@@ -1,7 +1,7 @@
 import SuggestedPostsSection from "../../components/Home/SuggestedPostsSection";
 
 import { Flex, Heading, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react";
-import { favoritePostsStaticData } from "../../components/Profile/ProfileInfo";
+import { favoritePostsStaticData } from "../../components/Profile/ProfileInfo/mocks";
 import { ProfileFavoriteCard } from "../../components/Profile/ProfileInfo/components/ProfileFavoriteCard";
 import { Carousel } from "../../components/commons/Carousel";
 import { GroupsSection } from "../../components/Home/GroupsSection";
@@ -9,9 +9,9 @@ import { GroupsSection } from "../../components/Home/GroupsSection";
 export function Home() {
     return (
         <Flex alignItems="center" justifyContent="center">
-            <Flex as="main" flexDirection="column" width="50%" paddingTop={10}>
+            <Flex as="main" flexDirection="column" width={{ base: "90%", xl: "50%" }} paddingTop={10}>
                 <Heading as="h2">Olá, Erick</Heading>
-                <Text lineHeight={10}>Veja aqui as novidades e informações e fique por dentro de tudo que acontece</Text>
+                <Text lineHeight={10}>Veja aqui as novidades e informações e fique por dentro de tudo que acontece.</Text>
 
                 <Tabs isLazy colorScheme="yellow" marginTop={4}>
                     <TabList>

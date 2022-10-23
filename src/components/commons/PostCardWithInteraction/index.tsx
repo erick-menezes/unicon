@@ -4,6 +4,7 @@ import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { CircledButton } from "../CircledButton";
 import { StyledButton } from '../StyledButton';
+import { Icon } from '@iconify/react';
 
 export type PostDataType = {
     postId: string;
@@ -20,9 +21,14 @@ interface PostCardWithInteractionProps {
 export function PostCardWithInteraction({ postData }: PostCardWithInteractionProps) {
     const userFavoritePostsIdsStaticData = [postData.postId];
     const [postIsFavorited, setPostIsFavorited] = useState<boolean>(() => userFavoritePostsIdsStaticData.includes(postData.postId));
+    const [postIsLiked, setPostIsLiked] = useState(false);
 
     function handleFavoritePost() {
         setPostIsFavorited((previousValue) => !previousValue);
+    }
+
+    function handleLikePost() {
+        setPostIsLiked((previousValue) => !previousValue);
     }
 
     return (
@@ -48,7 +54,12 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                 />
             </Box>
 
-            <Flex alignItems="center" justifyContent="space-between">
+            <Flex
+                flexDirection={{ base: "column", xl: "row" }}
+                alignItems={{ base: "flex-start", xl: "center" }}
+                gap={{ base: 8, xl: 0 }}
+                justifyContent="space-between"
+            >
                 <Text fontSize="lg" fontWeight="bold">{postData.title}</Text>
                 <Text fontWeight="semibold">300 curtidas</Text>
             </Flex>
@@ -87,7 +98,14 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                 </Flex>
             </Flex>
             
-            <StyledButton>Curtir</StyledButton>
+            <StyledButton gap={2} onClick={handleLikePost} title="Curtir post">
+                <Icon 
+                    icon={!postIsLiked ? "ant-design:like-outlined" : "ant-design:like-filled"}
+                    fontSize={30}
+                />
+
+                Curtir
+            </StyledButton>
         </Flex>
     );
 }

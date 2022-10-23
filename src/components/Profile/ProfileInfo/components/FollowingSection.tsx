@@ -1,15 +1,22 @@
-import { Flex, Heading } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { Carousel } from "../../commons/Carousel";
-import { GroupCard } from "../../commons/GroupCard";
-import { followedGroupsStaticData } from "../../Profile/ProfileInfo/mocks";
+import { followedGroupsStaticData } from "../mocks";
 
-export function GroupsSection() {
+import { Carousel } from "../../../commons/Carousel";
+import { GroupCard } from "../../../commons/GroupCard";
+import { HeadingStyled } from "../../../commons/HeadingStyled";
+
+import "keen-slider/keen-slider.min.css";
+
+export function FollowingSection() {
     return (
-        <Flex as="section" flexDirection="column" marginTop={12}>
-            <Link to="/groups">
-                <Heading as="h2" marginBottom={8}>Grupos</Heading>
-            </Link>
+        <>
+            <HeadingStyled 
+                as="h2" 
+                marginTop={10} 
+                marginBottom={10} 
+                size="md"
+            >
+                Seguindo
+            </HeadingStyled>
 
             <Carousel
                 options={{
@@ -25,11 +32,10 @@ export function GroupsSection() {
                     <GroupCard 
                         key={group.id}
                         data={group}
-                        variant="vertical"
                         className="keen-slider__slide"
                     />
                 ))}
             </Carousel>
-        </Flex>
+        </>
     );
 }

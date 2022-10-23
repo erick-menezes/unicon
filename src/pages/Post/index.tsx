@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { favoritePostsStaticData } from "../../components/Profile/ProfileInfo";
+import { favoritePostsStaticData } from "../../components/Profile/ProfileInfo/mocks";
 
 import { Flex, Heading } from "@chakra-ui/react";
 

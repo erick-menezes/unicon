@@ -58,7 +58,7 @@ export function ProfileFavoriteCard({ data, ...rest }: ProfileFavoriteCardProps)
                 to={`/${data.authorName.split(' ').map((name) => name.toLowerCase()).join('-')}/posts/${data.postId}`}
                 fontSize="lg"
                 fontWeight="bold"
-                noOfLines={2}
+                noOfLines={1}
                 title={data.title}
                 marginTop={4}
                 padding="0 1.5rem 0 1.5rem"

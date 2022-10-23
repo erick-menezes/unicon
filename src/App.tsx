@@ -16,6 +16,7 @@ import { Profile } from "./pages/Profile";
 import { Post } from "./pages/Post";
 import { Group } from "./pages/Group";
 import { Settings } from "./pages/Settings";
+import { GroupHub } from "./pages/GroupHub";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/:userName/posts/:postId" element={<Post />} />
             <Route path="/groups/:groupId" element={<Group />} />
+            <Route path="/groups" element={<GroupHub />} />
           </Route>
 
           <Route path="/" element={<Landing />} />

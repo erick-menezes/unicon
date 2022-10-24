@@ -61,11 +61,13 @@ export const theme = extendTheme({
             300: "#999999",
             800: "#333333",
         },
+        "orange": {
+            500: "#FF8360",
+            700: "#FF6F47",
+        }
     },
     fonts: {
-        // heading: "Inter, sans-serif",
         heading: "Quicksand, sans-serif",
-        // body: "Inter, sans-serif",
         body: "Quicksand, sans-serif",
     },
     styles: {

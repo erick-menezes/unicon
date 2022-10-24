@@ -9,7 +9,16 @@ import { GroupsSection } from "../../components/Home/GroupsSection";
 export function Home() {
     return (
         <Flex alignItems="center" justifyContent="center">
-            <Flex as="main" flexDirection="column" width={{ base: "90%", xl: "50%" }} paddingTop={10}>
+            <Flex
+                as="main"
+                flexDirection="column"
+                width={{
+                    base: "90%",
+                    xl: "50%"
+                }}
+                paddingTop={10}
+                paddingBottom={10}
+            >
                 <Heading as="h2">Olá, Erick</Heading>
                 <Text lineHeight={10}>Veja aqui as novidades e informações e fique por dentro de tudo que acontece.</Text>
 

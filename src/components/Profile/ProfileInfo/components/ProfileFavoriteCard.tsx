@@ -44,12 +44,19 @@ export function ProfileFavoriteCard({ data, ...rest }: ProfileFavoriteCardProps)
                 />
                 
                 <CircledButton
+                    background="orange.500"
+                    _hover={{
+                        background: "orange.700"
+                    }}
+                    _active={{
+                        background: "orange.700"
+                    }}
                     type="button"
                     position="absolute"
                     top="-10px"
                     right="-10px"
                     onClick={handleFavoritePost}
-                    icon={postIsFavorited ? "ant-design:heart-filled" : "ant-design:heart-outlined"}
+                    icon={postIsFavorited ? "bi:bookmark-fill" : "bi:bookmark"}
                 />
             </Box>
 

@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { FlexProps } from "@chakra-ui/react";
 
 type VariantType = 'horizontal' | 'vertical';
@@ -7,6 +8,7 @@ export interface GroupCardData {
     title: string; 
     postsAmount: number;
     groupImage: string;
+    coverImage?: string;
 }
 
 export interface GroupCardProps extends FlexProps {
@@ -14,4 +16,7 @@ export interface GroupCardProps extends FlexProps {
     data: GroupCardData;
 }
 
-export type VariantCardProps = Omit<GroupCardProps, 'variant'>
+export type VariantCardProps = {
+    isFollowed: boolean;
+    onFollow: Dispatch<React.SetStateAction<boolean>> 
+} & Omit<GroupCardProps, 'variant'>;

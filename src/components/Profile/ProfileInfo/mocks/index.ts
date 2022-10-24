@@ -4,6 +4,7 @@ export const followedGroupsStaticData = [
         title: "ADS",
         postsAmount: 33,
         groupImage: "https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png",
+        coverImage: "/assets/img/image.png",
         followersAmount: 50,
     },
     {
@@ -11,6 +12,7 @@ export const followedGroupsStaticData = [
         title: "ADM",
         postsAmount: 33,
         groupImage: "https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png",
+        coverImage: "/assets/img/image.png",
         followersAmount: 50,
     },
     {
@@ -18,6 +20,7 @@ export const followedGroupsStaticData = [
         title: "Sistemas de Informação e algumas coisas mais explicadas",
         postsAmount: 33,
         groupImage: "https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png",
+        coverImage: "/assets/img/image.png",
         followersAmount: 50,
     },
     {
@@ -25,6 +28,7 @@ export const followedGroupsStaticData = [
         title: "Sistemas de Informação e algumas coisas mais explicadas",
         postsAmount: 33,
         groupImage: "https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png",
+        coverImage: "/assets/img/image.png",
         followersAmount: 50,
     },
     {
@@ -32,6 +36,7 @@ export const followedGroupsStaticData = [
         title: "Sistemas de Informação e algumas coisas mais explicadas",
         postsAmount: 33,
         groupImage: "https://img.portalgsti.com.br/Nz3gKxUGjcqheGbqDrlxbTefsbk=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/07/22/governanca-de-ti.png",
+        coverImage: "/assets/img/image.png",
         followersAmount: 50,
     }
 ]

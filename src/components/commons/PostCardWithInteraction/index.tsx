@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { Avatar, Box, Flex, Image, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { CircledButton } from "../CircledButton";
 import { StyledButton } from '../StyledButton';
 import { Icon } from '@iconify/react';
@@ -44,13 +45,20 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                 />
 
                 <CircledButton
+                    background="orange.500"
+                    _hover={{
+                        background: "orange.700"
+                    }}
+                    _active={{
+                        background: "orange.700"
+                    }}
                     title="Favoritar post"
                     type="button"
                     position="absolute"
                     top="-10px"
                     right="-10px"
                     onClick={handleFavoritePost}
-                    icon={postIsFavorited ? "ant-design:heart-filled" : "ant-design:heart-outlined"}
+                    icon={postIsFavorited ? "bi:bookmark-fill" : "bi:bookmark"}
                 />
             </Box>
 
@@ -60,7 +68,19 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                 gap={{ base: 8, xl: 0 }}
                 justifyContent="space-between"
             >
-                <Text fontSize="lg" fontWeight="bold">{postData.title}</Text>
+                
+                <Text
+                    as={Link}
+                    to={`/${postData.authorName.split(' ').map((name) => name.toLowerCase()).join('-')}/posts/${postData.postId}`}
+                    fontSize="lg"
+                    fontWeight="bold"
+                    _hover={{
+                        textDecoration: "underline"
+                    }}
+                >
+                    {postData.title}
+                </Text>
+              
                 <Text fontWeight="semibold">300 curtidas</Text>
             </Flex>
 
@@ -92,7 +112,10 @@ export function PostCardWithInteraction({ postData }: PostCardWithInteractionPro
                         {postData.authorName}
                     </Text>
 
-                    <Text fontWeight="semibold" color="gray.300">
+                    <Text fontWeight="semibold" color="gray.300" display="flex" alignItems="center" gap={1}>
+                        <Icon 
+                            icon="ant-design:clock-circle-filled"
+                        />
                         há 2 dias
                     </Text>
                 </Flex>

@@ -2,6 +2,9 @@ import { extendTheme } from '@chakra-ui/react';
 import { StyleFunctionProps } from '@chakra-ui/theme-tools';
 
 export const theme = extendTheme({
+    config: {
+        initialColorMode: 'light',
+    },
     components: {
         Text: {
             baseStyle: {},
@@ -47,6 +50,7 @@ export const theme = extendTheme({
         
         "yellow": {
             800: "#FEDB41",
+            900: "#F4C701",
         },
         
         "blue": {

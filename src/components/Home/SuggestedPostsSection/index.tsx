@@ -5,9 +5,9 @@ import { Fragment } from "react";
 import { Divider, Flex, Heading } from "@chakra-ui/react";
 import { PostCardWithInteraction } from "../../commons/PostCardWithInteraction";
 
-function SuggestedPostsSection() {
+export function SuggestedPostsSection() {
     return ( 
-        <Flex as="section" flexDirection="column" marginTop={24}>
+        <Flex as="section" flexDirection="column" marginTop={10}>
             <Heading as="h2" marginBottom={8}>Publicações sugeridas</Heading>
 
           
@@ -25,5 +25,3 @@ function SuggestedPostsSection() {
         </Flex>
     );
 }
-
-export default SuggestedPostsSection;

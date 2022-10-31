@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { UserMenu } from "./components/UserMenu";
 import { NotificationMenu } from "./components/NotificationMenu";
-import { Flex, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Flex, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
 
 import { Icon } from "@iconify/react";
 
@@ -73,6 +73,8 @@ export function Header() {
             </InputGroup>
             
             <Flex alignItems="center" gap={5}>
+                <Text as={Link} to="/groups" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Grupos</Text>
+                <Text as={Link} to="/categories" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Categorias</Text>
                 <NotificationMenu />
                 <UserMenu />
             </Flex>

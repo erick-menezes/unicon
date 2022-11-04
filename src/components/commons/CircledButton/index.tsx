@@ -15,10 +15,10 @@ export function CircledButton({ icon, ...rest }: CircledButtonProps) {
             width="55px"
             height="55px"
             _hover={{
-                background: "blue.800",
+                background: "blue.600",
             }}
             _active={{
-                background: "blue.800"
+                background: "blue.600"
             }}
             {...rest}
         >

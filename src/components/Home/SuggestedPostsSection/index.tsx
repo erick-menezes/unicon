@@ -2,7 +2,8 @@ import { favoritePostsStaticData } from "../../Profile/ProfileInfo/mocks";
 
 import { Fragment } from "react";
 
-import { Divider, Flex, Heading } from "@chakra-ui/react";
+import { DividerHorizontal } from "../../Divider";
+import { Flex, Heading } from "@chakra-ui/react";
 import { PostCardWithInteraction } from "../../commons/PostCardWithInteraction";
 
 export function SuggestedPostsSection() {
@@ -18,7 +19,7 @@ export function SuggestedPostsSection() {
                             postData={post}
                         />
 
-                        <Divider borderColor="gray.200" height="10px" />
+                        <DividerHorizontal />
                     </Fragment>
                 ))}
             </Flex>

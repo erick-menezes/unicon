@@ -17,11 +17,10 @@ export function StyledButton({ children, ...rest }: StyledButtonProps) {
             boxShadow="10px 10px 20px rgba(0, 0, 0, 0.12)"
             borderRadius={"xl"}
             _hover={{
-                background: "blue.300",
-                filter: "opacity(0.9)"
+                background: "blue.600",
             }}
             _active={{
-                background: "blue.300",
+                background: "blue.600",
             }}
             {...rest}
         >

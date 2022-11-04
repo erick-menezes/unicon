@@ -2,9 +2,10 @@ import { useRef } from "react";
 
 import { StyledButton } from "../../components/commons/StyledButton";
 import { PostDialog } from "../../components/Home/PostDialog";
-import { Divider, Flex, useDisclosure } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 
 import { Icon } from "@iconify/react";
+import { DividerHorizontal } from "../../components/Divider";
 
 export function AdminMainPage() {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,7 +49,7 @@ export function AdminMainPage() {
                     Qual conteúdo deseja publicar hoje, Erick?
                 </StyledButton>
 
-                <Divider marginTop={4} borderColor="gray.200" height="10px" />
+                <DividerHorizontal marginTop={4} />
             </Flex>
 
             <PostDialog onClose={onClose} isOpen={isOpen} cancelRef={cancelRef} />

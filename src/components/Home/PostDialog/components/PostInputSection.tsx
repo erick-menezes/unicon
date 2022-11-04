@@ -1,45 +1,66 @@
-import Select from 'react-select';
-import { Flex, Text, Textarea } from "@chakra-ui/react";
-// import { CSSProperties } from 'react';
+import { useState, useEffect } from 'react';
 
-const optionsTest = [
-    { value: 'seguranca-da-informacao', label: 'Segurança da Informação' },
-    { value: 'calculoi', label: 'Cálculo I' },
-    { value: 'calculoii', label: 'Cálculo II' },
-    { value: 'java', label: 'Java' },
-    { value: 'python', label: 'Python' }
-]
+import { createGroup, SelectInput } from '../../../commons/form/SelectInput';
+import { Flex, Text } from "@chakra-ui/react";
+import { InputWithBlueLabel } from '../../../commons/form/InputWithBlueLabel';
+import { MultiValue } from 'react-select';
+import { Icon } from '@iconify/react';
 
-// const groupStyles = {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-// };
+const exactCategory = [
+    {
+      label: "Cálculo I",
+      value: "calculoi"
+    },
+    {
+      label: "Cálculo II",
+      value: "calculoii"
+    },
+    {
+        label: "Cálculo III",
+        value: "calculoiii"
+      }
+];
 
-// const groupBadgeStyles: CSSProperties = {
-//     backgroundColor: '#EBECF0',
-//     borderRadius: '2em',
-//     color: '#172B4D',
-//     display: 'inline-block',
-//     fontSize: 12,
-//     fontWeight: 'normal',
-//     lineHeight: '1',
-//     minWidth: 1,
-//     padding: '0.16666666666667em 0.5em',
-//     textAlign: 'center',
-// };
+const technologyCategory = [
+    {
+      label: "Java",
+      value: "java"
+    },
+    {
+      label: "Python",
+      value: "python"
+    }
+];
 
-// const formatGroupLabel = (data: GroupedOption) => (
-//     <div style={groupStyles}>
-//         <span>{data.label}</span>
-//         <span style={groupBadgeStyles}>{data.options.length}</span>
-//     </div>
-// );
+interface SelectOptionData {
+    label: string;
+    value: string;
+}
+
+// interface SelectOptionDataFormatted {
+//     label: JSX.Element;
+//     options: SelectOptionData[];
+// }
 
 export function PostInputSection() {
+    const [selectValue, setSelectValue] = useState<MultiValue<SelectOptionData[]>>([]);
+    const [options, setOptions] = useState<any[]>([]);
+
+    useEffect(() => {
+        buildSelectOptions();
+    }, []);
+
+    function buildSelectOptions() {
+        setOptions([
+            createGroup('Exatas', exactCategory, setSelectValue),
+            createGroup('Tecnologia', technologyCategory, setSelectValue)
+        ]);
+    }
+
     return (
         <Flex flexDirection="column" gap={6}>
-            <Textarea
+            <InputWithBlueLabel
+                labelTitle="Publicação rápida"
                 placeholder="Digite seu conteúdo aqui"
                 name="post-content"
                 id="post-content"
@@ -47,12 +68,13 @@ export function PostInputSection() {
                 rows={10}
                 padding={6}
                 borderRadius={10}
-                borderColor="gray.200"
+                borderWidth={2}
+                borderColor="blue.500"
                 _hover={{
-                    borderColor: "gray.200"
+                    borderColor: "blue.800"
                 }}
                 _focus={{
-                    borderColor: "gray.200",
+                    borderColor: "blue.500",
                     boxShadow: "0 0 0 1px #C4C4C4"
                 }}
                 _placeholder={{
@@ -64,9 +86,29 @@ export function PostInputSection() {
             <Flex flexDirection="column" gap={2}>
                 <Text fontWeight="semibold">Publicar em:</Text>
 
-                <Select 
-                    options={optionsTest}
+                <SelectInput
+                    closeMenuOnSelect={false}
+                    onChange={(option) => {
+                        console.log(option);
+                        return setSelectValue(option);
+                    }}
+                    options={options}
+                    value={selectValue}
                     placeholder="Selecione um grupo"
+                    noOptionsMessage={() => (
+                        <Flex
+                            color="gray.200"
+                            alignItems="center"
+                            justifyContent="center"
+                            flexDirection="column"
+                            paddingTop={4}
+                            paddingBottom={4}
+                            gap={2}
+                        >
+                            <Icon icon="material-symbols:search-off" fontSize={52} />
+                            <Text >Nenhum grupo foi encontrado.</Text>
+                        </Flex>
+                    )}
                     isMulti
                 />
             </Flex>

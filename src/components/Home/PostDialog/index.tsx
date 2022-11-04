@@ -1,7 +1,7 @@
 import { MutableRefObject } from "react";
 
 import { StyledButton } from "../../commons/StyledButton";
-import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay } from "@chakra-ui/react";
+import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogOverlay } from "@chakra-ui/react";
 
 import { PostInputSection } from "./components/PostInputSection";
 
@@ -22,20 +22,15 @@ export function PostDialog({ onClose, isOpen, cancelRef }: PostDialogProps) {
         >
             <AlertDialogOverlay />
 
-            <AlertDialogContent background="white" maxWidth="700px">
+            <AlertDialogContent background="white" maxWidth="1200px" paddingTop={16}>
                 <form>
                     <AlertDialogCloseButton />
-                    
-                    <AlertDialogHeader fontSize='2xl' fontWeight='bold'>
-                        Publicação rápida
-                    </AlertDialogHeader>
-                    
                     <AlertDialogBody>
                         <PostInputSection />
                     </AlertDialogBody>
                     
                     <AlertDialogFooter>
-                        <StyledButton>
+                        <StyledButton maxWidth="200px" margin="auto" marginTop={6}>
                             Publicar post                            
                         </StyledButton>
                     </AlertDialogFooter>

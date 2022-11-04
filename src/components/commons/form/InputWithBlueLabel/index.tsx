@@ -6,7 +6,7 @@ interface InputWithBlueLabelProps extends TextareaProps {
 
 export function InputWithBlueLabel({ labelTitle, ...rest }: InputWithBlueLabelProps) {
     return (
-        <>
+        <Box position="relative">
             <Box
                 background="blue.500"
                 marginLeft={2}
@@ -23,6 +23,6 @@ export function InputWithBlueLabel({ labelTitle, ...rest }: InputWithBlueLabelPr
             <Textarea
                 {...rest}
             />
-        </>
+        </Box>
     );
 }

@@ -1,11 +1,13 @@
-import { Avatar, Divider, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
-import { Icon } from "@iconify/react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { firebaseApp } from "../../../../services/firestore";
 import { getDocs, getFirestore, collection, query, where, doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { firebaseApp } from "../../../../services/firestore";
-import { useEffect, useState } from "react";
+
+import { DividerHorizontal } from "../../../Divider";
+import { Avatar, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Icon } from "@iconify/react";
 
 const userMenuOptions = [
     {
@@ -111,7 +113,7 @@ export function UserMenu() {
                     <Text color="darkgray">{userSessionData.role}</Text>
                 </Flex>
 
-                <Divider orientation='horizontal' borderColor="blackAlpha.300" margin="0.5rem 0" />
+                <DividerHorizontal margin="0.5rem 0" />
 
                 {userMenuOptions.map((option) => (
                     <MenuItem

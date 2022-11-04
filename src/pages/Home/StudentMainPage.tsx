@@ -4,6 +4,7 @@ import { Divider, Flex, Heading, Text } from "@chakra-ui/react";
 import { SuggestedPostsSection } from "../../components/Home/SuggestedPostsSection";
 import { GroupsSection } from "../../components/Home/GroupsSection";
 import { MainInformationsCarouselSection } from "../../components/Home/MainInformationsCarouselSection";
+import { DividerHorizontal } from "../../components/Divider";
 
 export function StudentMainPage() {
     return (
@@ -23,7 +24,7 @@ export function StudentMainPage() {
 
                 <MainInformationsCarouselSection />
 
-                <Divider marginTop={4} borderColor="gray.200" height="10px" />
+                <DividerHorizontal marginTop={4} />
 
                 <SuggestedPostsSection />
 

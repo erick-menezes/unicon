@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 
 import { Icon } from '@iconify/react';
 import { Link, useNavigate } from "react-router-dom";
@@ -39,6 +39,30 @@ export function Landing() {
                 >
                     Já tenho conta
                 </Text>
+
+                <Flex gap={4} alignItems="center" color="gray.200" marginY={6}>
+                    <Box borderBottom="1px solid" height={1} width="80px" />
+                    ou
+                    <Box borderBottom="1px solid" height={1} width="80px" />
+                </Flex>
+
+                <StyledButton
+                    background="white"
+                    color="gray.800"
+                    border="1px solid"
+                    borderColor="gray.100"
+                    display="flex"
+                    gap={4}
+                    _hover={{
+                        background: "gray.100"
+                    }}
+                >
+                    <Icon 
+                        icon="logos:microsoft-icon"
+                        fontSize={30}
+                    />
+                    Entrar com a Microsoft
+                </StyledButton>
             </Flex>
         </LandingContainer>
     );

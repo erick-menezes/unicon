@@ -7,6 +7,8 @@ import {
 
 import { theme } from "./styles/theme";
 
+import { AuthProvider } from "./contexts/auth";
+
 import { PageWithHeader } from "./components/commons/PageWithHeader";
 import { Home } from "./pages/Home";
 import { Landing } from "./pages/Landing";
@@ -21,25 +23,27 @@ import { CategoryHub } from "./pages/CategoryHub";
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>      
-      <BrowserRouter>
-        <Routes>
-          <Route element={<PageWithHeader />}>
-            <Route path="/home" element={<Home accessType="admin" />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/:userName/posts/:postId" element={<Post />} />
-            <Route path="/groups/:groupId" element={<Group />} />
-            <Route path="/groups" element={<GroupHub />} />
-            <Route path="/categories" element={<CategoryHub />} />
-          </Route>
+    <AuthProvider>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<PageWithHeader />}>
+              <Route path="/home" element={<Home accessType="user" />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/:userName/posts/:postId" element={<Post />} />
+              <Route path="/groups/:groupId" element={<Group />} />
+              <Route path="/groups" element={<GroupHub />} />
+              <Route path="/categories" element={<CategoryHub />} />
+            </Route>
 
-          <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </ChakraProvider>
+            <Route path="/" element={<Landing />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { firebaseApp } from "../../../../services/firestore";
+import { firebaseApp } from "../../../../services/firebase";
 import { getDocs, getFirestore, collection, query, where, doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 

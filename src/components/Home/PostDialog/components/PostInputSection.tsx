@@ -88,10 +88,7 @@ export function PostInputSection() {
 
                 <SelectInput
                     closeMenuOnSelect={false}
-                    onChange={(option) => {
-                        console.log(option);
-                        return setSelectValue(option);
-                    }}
+                    onChange={(option) => setSelectValue(option)}
                     options={options}
                     value={selectValue}
                     placeholder="Selecione um grupo"

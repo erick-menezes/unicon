@@ -19,9 +19,7 @@ export function StyledButton({ children, ...rest }: StyledButtonProps) {
             _hover={{
                 background: "blue.600",
             }}
-            _active={{
-                background: "blue.600",
-            }}
+            _active={{}}
             {...rest}
         >
             {children}

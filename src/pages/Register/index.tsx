@@ -1,21 +1,49 @@
-import { Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/auth";
+import { Controller, useForm } from "react-hook-form";
+
+import { CourseDataType } from "./types";
+
+import { getAllCourses, storeUserOnDatabase } from "./data";
+
+import { Link } from "react-router-dom";
 
 import { LandingContainer } from "../../components/Landing/LandingContainer";
+import { InputText } from "../../components/commons/form/InputText";
+import { StyledButton } from "../../components/commons/StyledButton";
+import { SelectInput } from "../../components/commons/form/SelectInput";
+import { Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Icon } from "@iconify/react";
 
 import '@material/react-text-field/index.scss';
 
-import { useForm } from "react-hook-form";
-import { InputText } from "../../components/commons/form/InputText";
-import { StyledButton } from "../../components/commons/StyledButton";
-import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
-
 export function Register() {
+    const { signUpWithEmailAndPassword } = useAuth();
     const { control, handleSubmit } = useForm();
     const isMobile = useBreakpointValue({ base: true, xl: false });
 
+    const [courseOptions, setCourseOptions] = useState<CourseDataType[]>([]);
+
+    useEffect(() => {
+        getAllCoursesData();
+    }, []);
+
+    async function getAllCoursesData() {
+        const allCourses = await getAllCourses();
+
+        setCourseOptions(allCourses);
+    }
+
     function onSubmit(model: any) {
-        console.log(model);
+        const { password, ...rest } = model;
+
+        try {
+            signUpWithEmailAndPassword(rest.email, password);
+
+            storeUserOnDatabase(rest);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -50,6 +78,37 @@ export function Register() {
                     label="Senha"
                     type="password"
                 />
+                
+                <Controller 
+                    control={control}
+                    name="course"
+                    render={({ 
+                        field: { onChange, name }
+                    }) => (
+                        <SelectInput
+                            styles={{ container: (rest) => ({ ...rest, width: '100%' }) }}
+                            options={courseOptions.map(course => ({ label: course.name, value: course.id }))}
+                            placeholder="Selecione o curso que está cursando"
+                            onChange={(data) => onChange(data?.value)}
+                            name={name}
+                            noOptionsMessage={() => (
+                                <Flex
+                                    color="gray.200"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    flexDirection="column"
+                                    paddingTop={4}
+                                    paddingBottom={4}
+                                    gap={2}
+                                >
+                                    <Icon icon="material-symbols:search-off" fontSize={52} />
+                                    <Text >Nenhum curso foi encontrado.</Text>
+                                </Flex>
+                            )}
+                        />
+                    )}
+                />
+                
 
                 <StyledButton type="submit">
                     Finalizar cadastro

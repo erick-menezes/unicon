@@ -4,23 +4,25 @@ import { Controller, useForm } from "react-hook-form";
 
 import { CourseDataType } from "./types";
 
-import { getAllCourses, storeUserOnDatabase } from "./data";
+import { getAllCourses } from "./data";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { LandingContainer } from "../../components/Landing/LandingContainer";
 import { InputText } from "../../components/commons/form/InputText";
 import { StyledButton } from "../../components/commons/StyledButton";
 import { SelectInput } from "../../components/commons/form/SelectInput";
-import { Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
 import '@material/react-text-field/index.scss';
+import { useBreakpoint } from "../../contexts/breakpoint";
 
 export function Register() {
     const { signUpWithEmailAndPassword } = useAuth();
     const { control, handleSubmit } = useForm();
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const navigate = useNavigate();
+    const { isMobile } = useBreakpoint(); 
 
     const [courseOptions, setCourseOptions] = useState<CourseDataType[]>([]);
 
@@ -35,12 +37,10 @@ export function Register() {
     }
 
     function onSubmit(model: any) {
-        const { password, ...rest } = model;
-
         try {
-            signUpWithEmailAndPassword(rest.email, password);
+            signUpWithEmailAndPassword(model);
 
-            storeUserOnDatabase(rest);
+            navigate('/home');
         } catch (error) {
             console.log(error);
         }
@@ -81,7 +81,7 @@ export function Register() {
                 
                 <Controller 
                     control={control}
-                    name="course"
+                    name="courseId"
                     render={({ 
                         field: { onChange, name }
                     }) => (

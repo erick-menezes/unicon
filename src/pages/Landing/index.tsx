@@ -15,7 +15,7 @@ export function Landing() {
     return (
         <LandingContainer>
             <Flex
-                width="50%"
+                width={{ base: "100%", xl: "50%" }}
                 flexDirection="column"
                 alignItems="center"
                 gap={4}

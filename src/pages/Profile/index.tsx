@@ -1,11 +1,12 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import { ProfileSidebar } from "../../components/Profile/ProfileSidebar";
 import { ProfileHeader } from "../../components/Profile/ProfileHeader";
 import { ProfileInfo } from "../../components/Profile/ProfileInfo";
+import { useBreakpoint } from "../../contexts/breakpoint";
 
 export function Profile() {
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { isMobile } = useBreakpoint(); 
 
     return (
         <Flex flexDirection={isMobile ? 'column' : 'row'}>

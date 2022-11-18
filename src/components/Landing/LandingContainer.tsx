@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
 
-import { Flex, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
+import { useBreakpoint } from "../../contexts/breakpoint";
 
 interface LandingContainerProps {
     children: ReactNode
 }
 
 export function LandingContainer({ children }: LandingContainerProps) {
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { isMobile } = useBreakpoint();
 
     return (
         <Flex

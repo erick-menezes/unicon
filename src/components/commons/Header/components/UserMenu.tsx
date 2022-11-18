@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { firebaseApp } from "../../../../services/firebase";
-import { getDocs, getFirestore, collection, query, where, doc, getDoc } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { useAuth } from "../../../../contexts/auth";
 
 import { DividerHorizontal } from "../../../Divider";
 import { Avatar, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
@@ -22,74 +18,18 @@ const userMenuOptions = [
         redirectTo: "/settings?section=account",
         icon: "eva:settings-2-fill"
     },
-    {
-        id: 3,
-        name: "Sair",
-        redirectTo: "/",
-        icon: "mingcute:exit-fill"
-    }
 ]
-
-interface UserSessionDataType {
-    name: string;
-    email: string;
-    profileImage: string;
-    role: string;
-}
 
 export function UserMenu() {
     const navigate = useNavigate();
-    const [userSessionData, setUserSessionData] = useState({} as UserSessionDataType);
+    const { userData, logout } = useAuth();
     
-    useEffect(() => {
-        (async () => {
-            try {
-                const db = getFirestore(firebaseApp);
-                const storage = getStorage(firebaseApp);
-                
-                const currentUserDocument = query(collection(db, 'users'), where("email", "==", "erickmenezes25@hotmail.com"));
-                const userSnapshot = await getDocs(currentUserDocument);
-
-                if (userSnapshot.empty) {
-                    throw new Error('Usuário não encontrado, não é possível pegar os dados.');
-                }
-
-                const userRoleDocument = doc(db, userSnapshot.docs[0].data().role.path);
-                const userRoleSnapshot = await getDoc(userRoleDocument);
-
-                if (!userRoleSnapshot.exists()) {
-                    throw new Error('Cargo do usuário não encontrado, não é possível pegar os dados.');
-                }
-
-                const userProfileImageReference = ref(storage, 'profiles/erick-menezes.jpg');
-                
-                const userProfileImageLink = await getDownloadURL(userProfileImageReference)
-                                                    .then((url) => url)
-                                                    .catch((error) => {
-                                                        throw new Error(error);
-                                                    });
-
-                const user = userSnapshot.docs[0].data();
-                const role = userRoleSnapshot.data();
-
-                setUserSessionData({
-                    name: user.name,
-                    email: user.email,
-                    profileImage: userProfileImageLink ?? '',
-                    role: role.name,
-                })
-            } catch (error) {
-                console.log('Error: ', error);
-            }
-        })();
-    }, []);
-
     return (
         <Menu>
             <MenuButton as="button">
                 <Avatar
-                    name={userSessionData.name}
-                    src={userSessionData.profileImage ?? ''}
+                    name={userData?.name}
+                    src={''}
                     width={42}
                     height={42}
                 />
@@ -99,18 +39,19 @@ export function UserMenu() {
                     flexDirection="column"
                     gap={1}
                     paddingLeft={4}
+                    paddingRight={4}
                 >
                     <Text
                       lineHeight={1}
                       fontWeight="bold"
                       fontSize="lg"
                       noOfLines={1}
-                      title={userSessionData.name}
+                      title={userData?.name}
                     >
-                        {userSessionData.name}
+                        {userData?.name}
                     </Text>
 
-                    <Text color="darkgray">{userSessionData.role}</Text>
+                    <Text color="darkgray">{userData?.email}</Text>
                 </Flex>
 
                 <DividerHorizontal margin="0.5rem 0" />
@@ -131,6 +72,18 @@ export function UserMenu() {
                         </Flex>
                     </MenuItem>
                 ))}
+
+                <MenuItem
+                    onClick={logout} 
+                    paddingLeft={4}
+                    _hover={{ background: 'gray.100' }}
+                >
+                    <Flex gap={3}>
+                        <Icon icon="mingcute:exit-fill" fontSize={26} />
+
+                        <Text>Sair</Text>
+                    </Flex>
+                </MenuItem>
             </MenuList>
         </Menu>
     );

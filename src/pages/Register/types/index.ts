@@ -7,9 +7,9 @@ export interface CourseDataType {
 
 // Form data types
 
-export interface RegisterUserFormDataType {
+export interface UserSignUpDataType {
     email: string;
     name: string;
-    course: string;
+    courseId: string;
     password: string;
 }

@@ -1,11 +1,12 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import { InformationSection } from "./components/InformationSection";
 import { FollowingSection } from "./components/FollowingSection";
 import { FavoritePostsSection } from "./components/FavoritePostsSection";
+import { useBreakpoint } from "../../../contexts/breakpoint";
 
 export function ProfileInfo() {
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { isMobile } = useBreakpoint(); 
     
     return (
         <Flex as="section" paddingTop={isMobile ? 40 : 190} paddingLeft={isMobile ? 10 : 16} width="100%">

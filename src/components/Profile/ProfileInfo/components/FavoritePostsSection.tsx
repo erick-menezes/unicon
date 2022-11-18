@@ -1,6 +1,5 @@
-import { favoritePostsStaticData } from "../mocks";
+import { favoritePostsStaticData } from "../../../../services/mocks";
 
-import { ProfileFavoriteCard } from "./ProfileFavoriteCard";
 import { HeadingStyled } from "../../../commons/HeadingStyled";
 import { Grid, GridItem } from "@chakra-ui/react";
 
@@ -23,13 +22,13 @@ export function FavoritePostsSection() {
                 rowGap={10} 
                 width="100%"
             >
-                {favoritePostsStaticData.map((post) => (
+                {/* {favoritePostsStaticData.map((post) => (
                     <GridItem>
                         <ProfileFavoriteCard
                             data={post}
                         />
                     </GridItem>
-                ))}
+                ))} */}
             </Grid>
         </>
     );

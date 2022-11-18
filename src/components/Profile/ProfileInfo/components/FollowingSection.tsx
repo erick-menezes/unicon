@@ -1,5 +1,3 @@
-import { followedGroupsStaticData } from "../mocks";
-
 import { Carousel } from "../../../commons/Carousel";
 import { GroupCard } from "../../../commons/GroupCard";
 import { HeadingStyled } from "../../../commons/HeadingStyled";
@@ -18,7 +16,7 @@ export function FollowingSection() {
                 Seguindo
             </HeadingStyled>
 
-            <Carousel
+            {/* <Carousel
                 options={{
                     mode: "snap",
                     slides: {
@@ -35,7 +33,7 @@ export function FollowingSection() {
                         className="keen-slider__slide"
                     />
                 ))}
-            </Carousel>
+            </Carousel> */}
         </>
     );
 }

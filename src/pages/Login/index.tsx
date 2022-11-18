@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 import { LandingContainer } from "../../components/Landing/LandingContainer";
@@ -10,15 +10,21 @@ import { InputText } from "../../components/commons/form/InputText";
 import { StyledButton } from "../../components/commons/StyledButton";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useAuth } from "../../contexts/auth";
+import { useBreakpoint } from "../../contexts/breakpoint";
 
 export function Login() {
     const { control, handleSubmit } = useForm();
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { logInWithEmailAndPassword, error } = useAuth();
+    const { isMobile } = useBreakpoint();
     const navigate = useNavigate();
 
     function onSubmit(model: any) {
-        navigate('/home');
-        console.log(model);
+        logInWithEmailAndPassword(model.email, model.password);
+
+        if (!error.message) {
+            navigate('/home');
+        }
     }
 
     return (
@@ -43,6 +49,7 @@ export function Login() {
 
                 <InputText
                     control={control}
+                    type="password"
                     name="password"
                     label="Senha"
                 />

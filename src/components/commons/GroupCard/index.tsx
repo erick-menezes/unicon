@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import { GroupCardProps, VariantCardProps } from "./types";
@@ -9,8 +9,9 @@ import { Icon } from "@iconify/react";
 
 import 'keen-slider/keen-slider.min.css';
 import { StyledButton } from "../StyledButton";
+import { GroupRepository } from '../../../services/firestore/repositories/Groups';
 
-function HorizontalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProps) {
+function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: VariantCardProps) {
     return (
         <Flex
             justifyContent="space-between"
@@ -24,14 +25,14 @@ function HorizontalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProp
                         objectFit="cover"
                         maxWidth={16}
                         height="auto"
-                        src={data.groupImage}
-                        alt={data.title}
+                        src={'https://icon-library.com/images/it-services-icon/it-services-icon-1.jpg'}
+                        alt={data.name}
                     />
                 </Box>
                 
                 <Flex flexDirection="column" rowGap={0.5}>
-                    <Text as={Link} to={`/groups/${data.id}`} fontSize="lg" fontWeight="semibold" noOfLines={1} title={data.title}>{data.title}</Text>
-                    <Text>{data.postsAmount} postagens</Text>
+                    <Text as={Link} to={`/groups/${data.id}`} fontSize="lg" fontWeight="semibold" noOfLines={1} title={data.name}>{data.name}</Text>
+                    <Text>{postAmount} postagens</Text>
                 </Flex>
             </Flex>
 
@@ -62,7 +63,7 @@ function HorizontalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProp
     )
 }
 
-function VerticalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProps) {
+function VerticalCard({ data, isFollowed, onFollow, postAmount, ...rest }: VariantCardProps) {
     return (
         <Flex
             flexDirection="column"
@@ -81,8 +82,8 @@ function VerticalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProps)
                     width="100%"
                     maxHeight="78px"
                     height="auto"
-                    src={data?.coverImage}
-                    alt={'Imagem de capa do grupo' + data.title}
+                    src={'/assets/img/image.png'}
+                    alt={'Imagem de capa do grupo' + data.name}
                 />
             </Box>
 
@@ -99,14 +100,14 @@ function VerticalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProps)
                         maxWidth={16}
                         width="auto"
                         height="auto"
-                        src={data.groupImage}
-                        alt={data.title}
+                        src={'https://icon-library.com/images/it-services-icon/it-services-icon-1.jpg'}
+                        alt={data.name}
                     />
                 </Box>
                 
                 <Flex flexDirection="column" gap={0.5} alignItems="center">
-                    <Text as={Link} to={`/groups/${data.id}`} fontWeight="semibold" noOfLines={1} title={data.title}>{data.title}</Text>
-                    <Text size="sm">{data.postsAmount} postagens</Text>
+                    <Text as={Link} to={`/groups/${data.id}`} fontWeight="semibold" noOfLines={1} title={data.name}>{data.name}</Text>
+                    <Text size="sm">{postAmount} postagens</Text>
                 </Flex>
             </Flex>
 
@@ -119,11 +120,22 @@ function VerticalCard({ data, isFollowed, onFollow, ...rest }: VariantCardProps)
 
 export function GroupCard({ variant, data, ...rest }: GroupCardProps) {
     const [isFollowed, setIsFollowed] = useState(true);
+    const [postAmount, setPostAmount] = useState(0);
+
+    useEffect(() => {
+        getGroupPostAmount();
+    }, []);
+
+    async function getGroupPostAmount() {
+        const groupPostAmount = await GroupRepository.getPostAmountByGroup(data.id);
+
+        setPostAmount(groupPostAmount);
+    }
 
     return variant === 'horizontal' ? (
-        <HorizontalCard data={data} isFollowed={isFollowed} onFollow={setIsFollowed} {...rest} />
+        <HorizontalCard data={data} isFollowed={isFollowed} onFollow={setIsFollowed} postAmount={postAmount} {...rest} />
     ) : (
-        <VerticalCard data={data} isFollowed={isFollowed} onFollow={setIsFollowed} {...rest} />
+        <VerticalCard data={data} isFollowed={isFollowed} onFollow={setIsFollowed} postAmount={postAmount} {...rest} />
     );
 }
 

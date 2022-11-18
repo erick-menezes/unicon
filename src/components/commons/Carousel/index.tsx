@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-import { Box, useBreakpointValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { KeenSliderOptions, useKeenSlider } from "keen-slider/react";
 import { CircledButton } from '../CircledButton';
+import { useBreakpoint } from '../../../contexts/breakpoint';
 
 interface CarouselProps {
     children: React.ReactNode;
@@ -17,7 +18,7 @@ export function Carousel({ children, options }: CarouselProps) {
         },
         ...options,
     });
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { isMobile } = useBreakpoint(); 
     const [currentSlide, setCurrentSlide] = useState(0);
 
     function showPreviousSlide(e: any) {
@@ -63,7 +64,7 @@ export function Carousel({ children, options }: CarouselProps) {
                         _active={{
                             filter: "brightness(0.9)"
                         }}
-                        disabled={currentSlide === (instanceRef.current && instanceRef.current.track.details.slides.length - 1)}
+                        disabled={currentSlide === (instanceRef.current && instanceRef.current.track.details?.slides?.length - 1)}
                         onClick={showNextSlide}
                     />
                 </>

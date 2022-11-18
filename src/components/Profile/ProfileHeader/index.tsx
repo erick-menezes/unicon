@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react";
 import { Avatar, Box, Flex, Heading, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import { useBreakpoint } from "../../../contexts/breakpoint";
 
 export function ProfileHeader() {
-    const isMobile = useBreakpointValue({ base: true, xl: false });
+    const { isMobile } = useBreakpoint(); 
     const showChangeCoverText = useBreakpointValue({ base: false, 'md': true })
     
     return (

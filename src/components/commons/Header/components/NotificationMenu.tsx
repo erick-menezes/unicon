@@ -1,7 +1,7 @@
 import { Avatar, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
-import { favoritePostsStaticData } from "../../../Profile/ProfileInfo/mocks";
+import { favoritePostsStaticData } from "../../../../services/mocks";
 
 export function NotificationMenu() {
     const navigate = useNavigate();

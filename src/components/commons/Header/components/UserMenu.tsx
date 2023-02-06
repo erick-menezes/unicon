@@ -23,13 +23,13 @@ const userMenuOptions = [
 export function UserMenu() {
     const navigate = useNavigate();
     const { userData, logout } = useAuth();
-    
+
     return (
         <Menu>
             <MenuButton as="button">
                 <Avatar
                     name={userData?.name}
-                    src={''}
+                    src={`${process.env.PUBLIC_URL}assets/img/me.jpg`}
                     width={42}
                     height={42}
                 />
@@ -61,7 +61,7 @@ export function UserMenu() {
                         key={option.id}
                         onClick={
                             () => navigate(option.redirectTo)
-                        } 
+                        }
                         paddingLeft={4}
                         _hover={{ background: 'gray.100' }}
                     >
@@ -74,7 +74,7 @@ export function UserMenu() {
                 ))}
 
                 <MenuItem
-                    onClick={logout} 
+                    onClick={logout}
                     paddingLeft={4}
                     _hover={{ background: 'gray.100' }}
                 >

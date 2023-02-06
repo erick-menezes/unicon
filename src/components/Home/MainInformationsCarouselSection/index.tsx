@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 
+import { getAllPosts } from '../../../services/firestore/use-cases/posts/get-all-posts';
+
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 
 // import { favoritePostsStaticData } from "../../Profile/ProfileInfo/mocks";
 import { ProfileFavoriteCard } from "../../Profile/ProfileInfo/components/ProfileFavoriteCard";
 import { Carousel } from "../../commons/Carousel";
-import { PostRepository } from '../../../services/firestore/repositories/Posts';
-import { Post } from '../../../services/firestore/repositories/Posts/types';
+import { Post } from '../../../services/database/entities/post';
 
 interface PostsDataType {
     trending: Post[];
@@ -22,16 +23,16 @@ export function MainInformationsCarouselSection() {
     });
 
     useEffect(() => {
-        getAllPosts();
+        getPosts();
     }, [])
 
-    async function getAllPosts() {
-        const posts = await PostRepository.index();
-        
+    async function getPosts() {
+        const { posts } = await getAllPosts();
+
         setPosts({
-            trending: posts as Post[],
-            academicCalendar: posts as Post[],
-            financial: posts as Post[],
+            trending: posts,
+            academicCalendar: posts,
+            financial: posts,
         })
     }
 

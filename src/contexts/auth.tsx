@@ -1,11 +1,21 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
+import { getUserAccount } from "../services/firestore/use-cases/users/get-user-account";
+import { registerAccount } from "../services/firestore/use-cases/users/register-account";
+
 import { UserSignUpDataType } from "../pages/Register/types";
 
 import { firebaseApp } from "../services/firebase";
-import { createUserWithEmailAndPassword, getAuth, User, signOut, signInWithEmailAndPassword } from "firebase/auth";
-import { UserRepository } from "../services/firestore/repositories/Users";
-import { Timestamp } from "firebase/firestore";
+import { User as UserData } from "../services/database/models/user";
+import {
+    createUserWithEmailAndPassword,
+    getAuth,
+    User,
+    signOut,
+    signInWithEmailAndPassword,
+    setPersistence,
+    browserLocalPersistence
+} from "firebase/auth";
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -22,17 +32,8 @@ interface AuthContextValueType {
     logInWithEmailAndPassword: (email: string, password: string) => void;
     logout: () => void;
     userAuthSession: User | null;
-    userData: UserDataType | null;
+    userData: UserData | null;
     isAuthenticated: boolean;
-}
-
-interface UserDataType {
-    courseId: string;
-    createdAt: Timestamp;
-    disciplines: string[];
-    email: string;
-    name: string;
-    roleId: string;
 }
 
 const AuthContext = createContext({} as AuthContextValueType);
@@ -41,7 +42,7 @@ const auth = getAuth(firebaseApp);
 
 export function AuthProvider({ children }: AuthProviderProps) {
     const [userAuthSession, setUserAuthSession] = useState<User | null>(null);
-    const [userData, setUserData] = useState<UserDataType | null>(null);
+    const [userData, setUserData] = useState<UserData | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState<ErrorDataType>({ message: '', code: '' });
 
@@ -51,15 +52,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 setUserAuthSession(userSession);
                 setIsAuthenticated(true);
 
-                const storedUser = await UserRepository.show(userSession.uid) as UserDataType;
+                const { user } = await getUserAccount(userSession.uid, "authUID");
 
-                setUserData(storedUser);
+                setUserData(user);
             } else {
                 setUserAuthSession(null);
                 setIsAuthenticated(false);
             }
         });
-        
+
         return unsubscribe;
     }, []);
 
@@ -68,16 +69,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
             .then(async (userCredential) => {
                 const user = userCredential.user;
 
-                await UserRepository.store({ 
+                await registerAccount({
                     courseId,
-                    email, 
-                    name, 
-                    authUID: user.uid 
+                    email,
+                    name,
+                    authUID: user.uid
                 });
 
-                const storedUser = await UserRepository.show(userCredential.user.uid) as UserDataType;
+                const { user: userData } = await getUserAccount(userCredential.user.uid, "authUID");
 
-                setUserData(storedUser);
+                setUserData(userData);
             })
             .catch((error) => {
                 setError({ message: error.message, code: error.code });
@@ -85,10 +86,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     function logInWithEmailAndPassword(email: string, password: string) {
-        signInWithEmailAndPassword(auth, email, password)
-            .catch((error) => {
-                setError({ message: error.message, code: error.code });
-            });
+        setPersistence(auth, browserLocalPersistence).then(() => {
+            return signInWithEmailAndPassword(auth, email, password);
+        }).catch((error) => {
+            setError({ message: error.message, code: error.code });
+        });
     }
 
     function logout() {
@@ -96,15 +98,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     return (
-        <AuthContext.Provider 
-            value={{ 
-                signUpWithEmailAndPassword, 
+        <AuthContext.Provider
+            value={{
+                signUpWithEmailAndPassword,
                 logInWithEmailAndPassword,
                 logout,
                 userAuthSession,
                 userData,
-                isAuthenticated, 
-                error, 
+                isAuthenticated,
+                error,
             }}
         >
             {children}

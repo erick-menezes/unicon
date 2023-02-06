@@ -63,15 +63,15 @@ export function Header() {
                     justifyContent="center"
                     paddingRight={4}
                     children={
-                        <Icon 
-                            icon="eva:search-fill" 
-                            fontSize={28} 
-                            color="darkgray" 
+                        <Icon
+                            icon="eva:search-fill"
+                            fontSize={28}
+                            color="darkgray"
                         />
-                    } 
+                    }
                 />
             </InputGroup>
-            
+
             <Flex alignItems="center" gap={5}>
                 <Text as={Link} to="/groups" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Grupos</Text>
                 <Text as={Link} to="/categories" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Categorias</Text>

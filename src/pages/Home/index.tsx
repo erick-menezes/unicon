@@ -2,11 +2,11 @@ import { AdminMainPage } from "./AdminMainPage";
 import { StudentMainPage } from "./StudentMainPage";
 
 interface HomeProps {
-    accessType: string;
+    accessType: "User" | "Creator";
 }
 
 export function Home({ accessType }: HomeProps) {
-    return accessType === 'user' ? (
+    return accessType === 'User' ? (
         <StudentMainPage />
     ) : (
         <AdminMainPage />

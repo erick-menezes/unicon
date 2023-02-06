@@ -47,12 +47,12 @@ export const theme = extendTheme({
     },
     colors: {
         "red": "#FF0000",
-        
+
         "yellow": {
             800: "#FEDB41",
             900: "#F4C701",
         },
-        
+
         "blue": {
             100: "#D0F6FE",
             300: "#88E9FF",
@@ -77,9 +77,22 @@ export const theme = extendTheme({
     },
     styles: {
         global: (props: StyleFunctionProps) => ({
+            '*': {
+                fontSmooth: 'always',
+            },
             'html, body': {
                 width: '100vw',
                 height: '100vh',
+            },
+            '#post-content': {
+                'h1' :{ fontSize: 42 },
+                'h2': { fontSize: 34 },
+                'h3': { fontSize: 26 },
+                'h4': { fontSize: 22 },
+                'h5': { fontSize: 20 },
+                'h6': { fontSize: 18 },
+                'a': { textDecoration: 'underline', color: 'blue.500' },
+                'a:hover': { color: 'blue.800' },
             },
             'body': {
                 bg: 'white',
@@ -104,6 +117,22 @@ export const theme = extendTheme({
             '::-webkit-scrollbar-thumb:hover': {
                 background: 'blue.800',
             },
+            '.ck-rounded-corners .ck.ck-balloon-panel, .ck.ck-balloon-panel.ck-rounded-corners': {
+                'z-index': '10055 !important'
+            },
+            '.ck': {
+                height: '300px',
+                maxHeight: '300px',
+
+                'h1': { fontSize: 42 },
+                'h2': { fontSize: 34 },
+                'h3': { fontSize: 26 },
+                'h4': { fontSize: 22 },
+                'h5': { fontSize: 20 },
+                'h6': { fontSize: 18 },
+                'ul, ol': { paddingLeft: '1.5em' },
+                'a': { textDecoration: 'underline', color: 'blue.500' }
+            }
         }),
     },
 })

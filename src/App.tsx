@@ -1,3 +1,5 @@
+import './libs/momentConfig';
+
 import { ChakraProvider } from "@chakra-ui/react";
 import {
   BrowserRouter,
@@ -7,7 +9,7 @@ import {
 
 import { theme } from "./styles/theme";
 
-import { AuthProvider, useAuth } from "./contexts/auth";
+import { AuthProvider } from "./contexts/auth";
 
 import { PrivateRoute } from "./components/router/PrivateRoute";
 import { PageWithHeader } from "./components/commons/PageWithHeader";
@@ -23,9 +25,10 @@ import { GroupHub } from "./pages/GroupHub";
 import { CategoryHub } from "./pages/CategoryHub";
 import { RedirectRoute } from "./components/router/RedirectRoute";
 import { BreakpointProvider } from "./contexts/breakpoint";
+import { NewPost } from "./pages/NewPost";
 
 function App() {
-  const { userData } = useAuth();
+//   const { userData } = useAuth();
 
   return (
     <AuthProvider>
@@ -35,16 +38,17 @@ function App() {
             <Routes>
               <Route element={<PrivateRoute />}>
                 <Route element={<PageWithHeader />}>
-                  <Route path="/home" element={<Home accessType="user" />} />
+                  <Route path="/home" element={<Home accessType="User" />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/:userName/posts/:postId" element={<Post />} />
                   <Route path="/groups/:groupId" element={<Group />} />
                   <Route path="/groups" element={<GroupHub />} />
                   <Route path="/categories" element={<CategoryHub />} />
+                  <Route path="/post/new" element={<NewPost />} />
                 </Route>
               </Route>
-              
+
               <Route element={<RedirectRoute />}>
                 <Route path="/" element={<Landing />} />
                 <Route path="/register" element={<Register />} />

@@ -3,9 +3,9 @@ import { Avatar, Box, Flex, Heading, Image, Text, useBreakpointValue } from "@ch
 import { useBreakpoint } from "../../../contexts/breakpoint";
 
 export function ProfileHeader() {
-    const { isMobile } = useBreakpoint(); 
+    const { isMobile } = useBreakpoint();
     const showChangeCoverText = useBreakpointValue({ base: false, 'md': true })
-    
+
     return (
         <Box width="100%" position="relative" zIndex={0} as="header">
             <Box
@@ -52,7 +52,7 @@ export function ProfileHeader() {
 
                         <Avatar
                             name='Dan Abrahmov'
-                            src='https://bit.ly/dan-abramov'
+                            src={`${process.env.PUBLIC_URL}assets/img/me.jpg`}
                             width={180}
                             height={180}
                         />
@@ -63,7 +63,7 @@ export function ProfileHeader() {
                             rowGap={1}
                             marginTop={12}
                         >
-                            <Heading as="h2" size="md">Dan Abrahmov</Heading>
+                            <Heading as="h2" size="md">Erick Menezes</Heading>
                             <Text size="md">Membro desde Janeiro 2022</Text>
                         </Flex>
                     </Flex>

@@ -4,22 +4,21 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Carousel } from "../../commons/Carousel";
 import { GroupCard } from "../../commons/GroupCard";
-import { GroupRepository } from "../../../services/firestore/repositories/Groups";
-import { Group } from "../../../services/firestore/repositories/Groups/types";
+import { Group } from "../../../services/database/models/group";
+import { getAllGroups } from "../../../services/firestore/use-cases/groups/get-all-groups";
 
 export function GroupsSection() {
     const [suggestedGroups, setSuggestedGroups] = useState<Group[]>([]);
 
     useEffect(() => {
         getSuggestedGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function getSuggestedGroups() {
-        const groups = await GroupRepository.index();
-        
-        console.log(groups);
+        const { groups } = await getAllGroups();
 
-        setSuggestedGroups(groups as Group[]);
+        setSuggestedGroups(groups);
     }
 
     return (
@@ -40,7 +39,7 @@ export function GroupsSection() {
                     }}
                 >
                     {suggestedGroups.map((group) => (
-                        <GroupCard 
+                        <GroupCard
                             key={group.id}
                             data={group}
                             variant="vertical"

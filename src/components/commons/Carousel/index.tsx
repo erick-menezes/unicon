@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
 import { Box } from "@chakra-ui/react";
 import { KeenSliderOptions, useKeenSlider } from "keen-slider/react";
@@ -6,11 +6,10 @@ import { CircledButton } from '../CircledButton';
 import { useBreakpoint } from '../../../contexts/breakpoint';
 
 interface CarouselProps {
-    children: React.ReactNode;
     options: KeenSliderOptions;
 }
 
-export function Carousel({ children, options }: CarouselProps) {
+export function Carousel({ children, options }: PropsWithChildren<CarouselProps>) {
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         initial: 0,
         slideChanged(slider) {
@@ -18,7 +17,7 @@ export function Carousel({ children, options }: CarouselProps) {
         },
         ...options,
     });
-    const { isMobile } = useBreakpoint(); 
+    const { isMobile } = useBreakpoint();
     const [currentSlide, setCurrentSlide] = useState(0);
 
     function showPreviousSlide(e: any) {
@@ -35,7 +34,7 @@ export function Carousel({ children, options }: CarouselProps) {
 
             {!isMobile && (
                 <>
-                    <CircledButton 
+                    <CircledButton
                         icon="akar-icons:chevron-left"
                         position="absolute"
                         top="50%"
@@ -51,7 +50,7 @@ export function Carousel({ children, options }: CarouselProps) {
                         onClick={showPreviousSlide}
                     />
 
-                    <CircledButton 
+                    <CircledButton
                         icon="akar-icons:chevron-right"
                         position="absolute"
                         top="50%"

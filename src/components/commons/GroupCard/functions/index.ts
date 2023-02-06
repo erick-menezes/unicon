@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Group } from "../../../../services/firestore/repositories/Groups/types";
+import { Group } from "../../../../services/database/models/group";
 
 // import { GroupCardData } from "../types";
 

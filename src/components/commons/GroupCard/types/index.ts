@@ -1,16 +1,8 @@
 import { Dispatch } from "react";
 import { FlexProps } from "@chakra-ui/react";
-import { Group } from "../../../../services/firestore/repositories/Groups/types";
+import { Group } from "../../../../services/database/models/group";
 
 type VariantType = 'horizontal' | 'vertical';
-
-// export interface GroupCardData {
-//     id: string;
-//     title: string; 
-//     postsAmount: number;
-//     groupImage: string;
-//     coverImage?: string;
-// }
 
 export interface GroupCardProps extends FlexProps {
     variant: VariantType;

@@ -1,6 +1,6 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { followedGroupsStaticData } from "../../services/mocks";
+import { followedGroupsStaticData } from "../../utils/mocks";
 
 export function Group() {
     const { groupId } = useParams();

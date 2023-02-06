@@ -16,7 +16,7 @@ export function LandingContainer({ children }: LandingContainerProps) {
           justifyContent="center"
           width="100%"
           height="100%"
-          backgroundImage={isMobile ? `url('${process.env.PUBLIC_URL}assets/img/people.webp')` : 'none'}
+          backgroundImage={isMobile ? `url('${process.env.PUBLIC_URL}assets/img/library.jpg')` : 'none'}
           backgroundSize={isMobile ? "cover" : "initial"}
           backgroundPosition={isMobile ? "center" : "initial"}
         >
@@ -36,7 +36,7 @@ export function LandingContainer({ children }: LandingContainerProps) {
 
             {!isMobile && (
                 <Flex background="blue.300" width="50%">
-                    <Image objectFit="cover" maxWidth="100%" height="auto" src={process.env.PUBLIC_URL + 'assets/img/people.webp'} alt="Test" />
+                    <Image objectFit="cover" maxWidth="100%" height="auto" src={process.env.PUBLIC_URL + 'assets/img/library.jpg'} alt="Test" />
                 </Flex>
             )}
         </Flex>

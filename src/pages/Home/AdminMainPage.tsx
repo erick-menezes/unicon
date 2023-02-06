@@ -6,14 +6,18 @@ import { Flex, useDisclosure } from "@chakra-ui/react";
 
 import { Icon } from "@iconify/react";
 import { DividerHorizontal } from "../../components/Divider";
+import { useAuth } from "../../contexts/auth";
 
 export function AdminMainPage() {
+    const { userData } = useAuth();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const cancelRef = useRef(null);
 
+    const firstName = userData?.name.split(' ')[0];
+
     return (
         <Flex alignItems="center" justifyContent="center">
-            <Flex 
+            <Flex
                 as="main"
                 flexDirection="column"
                 width={{
@@ -41,15 +45,18 @@ export function AdminMainPage() {
                     }}
                     onClick={onOpen}
                 >
-                    <Icon 
+                    <Icon
                         icon="bi:chat-dots-fill"
                         fontSize={28}
                     />
 
-                    Qual conteúdo deseja publicar hoje, Erick?
+                    Qual conteúdo deseja publicar hoje, {firstName}?
                 </StyledButton>
 
                 <DividerHorizontal marginTop={4} />
+
+                {/* <Heading as="h2">Tu é bom.</Heading>
+                <Text size="lg">Tu é bom.</Text> */}
             </Flex>
 
             <PostDialog onClose={onClose} isOpen={isOpen} cancelRef={cancelRef} />

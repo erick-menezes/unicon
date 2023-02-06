@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
+    "@ckeditor/ckeditor5-autoformat": "^35.3.1",
+    "@ckeditor/ckeditor5-build-classic": "^35.3.1",
+    "@ckeditor/ckeditor5-heading": "^35.3.1",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@material/react-text-field": "^0.15.0",
@@ -14,6 +18,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "ckeditor5-custom-build": "file:./ckeditor5",
     "firebase": "^9.10.0",
     "framer-motion": "^6.5.1",
     "keen-slider": "^6.8.2",
@@ -52,7 +57,8 @@
     ]
   },
   "devDependencies": {
-    "@iconify/react": "^3.2.2"
+    "@iconify/react": "^3.2.2",
+    "@types/ckeditor__ckeditor5-build-classic": "^29.0.1"
   },
   "browser": {
     "crypto": false

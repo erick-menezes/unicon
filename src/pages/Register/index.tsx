@@ -2,10 +2,6 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/auth";
 import { Controller, useForm } from "react-hook-form";
 
-import { CourseDataType } from "./types";
-
-import { getAllCourses } from "./data";
-
 import { Link, useNavigate } from "react-router-dom";
 
 import { LandingContainer } from "../../components/Landing/LandingContainer";
@@ -17,23 +13,25 @@ import { Icon } from "@iconify/react";
 
 import '@material/react-text-field/index.scss';
 import { useBreakpoint } from "../../contexts/breakpoint";
+import { getAllCourses } from "../../services/firestore/use-cases/courses/get-all-courses";
+import { Course } from "../../services/database/models/course";
 
 export function Register() {
     const { signUpWithEmailAndPassword } = useAuth();
     const { control, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const { isMobile } = useBreakpoint(); 
+    const { isMobile } = useBreakpoint();
 
-    const [courseOptions, setCourseOptions] = useState<CourseDataType[]>([]);
+    const [courseOptions, setCourseOptions] = useState<Course[]>([]);
 
     useEffect(() => {
         getAllCoursesData();
     }, []);
 
     async function getAllCoursesData() {
-        const allCourses = await getAllCourses();
+        const { courses } = await getAllCourses();
 
-        setCourseOptions(allCourses);
+        setCourseOptions(courses);
     }
 
     function onSubmit(model: any) {
@@ -78,11 +76,11 @@ export function Register() {
                     label="Senha"
                     type="password"
                 />
-                
-                <Controller 
+
+                <Controller
                     control={control}
                     name="courseId"
-                    render={({ 
+                    render={({
                         field: { onChange, name }
                     }) => (
                         <SelectInput
@@ -108,7 +106,7 @@ export function Register() {
                         />
                     )}
                 />
-                
+
 
                 <StyledButton type="submit">
                     Finalizar cadastro

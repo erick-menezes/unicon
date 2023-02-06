@@ -7,10 +7,10 @@ import "keen-slider/keen-slider.min.css";
 export function FollowingSection() {
     return (
         <>
-            <HeadingStyled 
-                as="h2" 
-                marginTop={10} 
-                marginBottom={10} 
+            <HeadingStyled
+                as="h2"
+                marginTop={10}
+                marginBottom={10}
                 size="md"
             >
                 Seguindo
@@ -27,7 +27,7 @@ export function FollowingSection() {
                 }}
             >
                 {followedGroupsStaticData.map((group) => (
-                    <GroupCard 
+                    <GroupCard
                         key={group.id}
                         data={group}
                         className="keen-slider__slide"

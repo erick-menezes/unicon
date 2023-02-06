@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react";
 
 import 'keen-slider/keen-slider.min.css';
 import { StyledButton } from "../StyledButton";
-import { GroupRepository } from '../../../services/firestore/repositories/Groups';
+import { countGroupPosts } from '../../../services/firestore/use-cases/groups/count-group-posts';
 
 function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: VariantCardProps) {
     return (
@@ -29,7 +29,7 @@ function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Var
                         alt={data.name}
                     />
                 </Box>
-                
+
                 <Flex flexDirection="column" rowGap={0.5}>
                     <Text as={Link} to={`/groups/${data.id}`} fontSize="lg" fontWeight="semibold" noOfLines={1} title={data.name}>{data.name}</Text>
                     <Text>{postAmount} postagens</Text>
@@ -50,7 +50,7 @@ function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Var
                         }}
                         onClick={() => handleUnfollowGroup(data, onFollow)}
                     >
-                        <Icon 
+                        <Icon
                             icon={isFollowed ? "ep:remove-filled" : "carbon:add-filled"}
                             color="#63E1FD"
                             fontSize={32}
@@ -58,7 +58,7 @@ function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Var
                     </Button>
                 </Tooltip>
             </Box>
-            
+
         </Flex>
     )
 }
@@ -72,7 +72,7 @@ function VerticalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Varia
             height="100%"
             minWidth="180px"
             minHeight="194px"
-            gap={4}
+            gap={8}
             borderRadius={10}
             {...rest}
         >
@@ -85,16 +85,19 @@ function VerticalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Varia
                     src={'/assets/img/image.png'}
                     alt={'Imagem de capa do grupo' + data.name}
                 />
-            </Box>
 
-            <Flex
-                flexDirection="column"
-                alignItems="center"
-                position="absolute" 
-                bottom={16}
-                gap={1}
-            >
-                <Box width={16} height={16} borderRadius="50%" background="white">
+                <Box
+                    width={16}
+                    height={16}
+                    borderRadius="50%"
+                    background="white"
+                    position="absolute"
+                    bottom={-8}
+                    left={0}
+                    right={0}
+                    marginRight="auto"
+                    marginLeft="auto"
+                >
                     <Image
                         objectFit="cover"
                         maxWidth={16}
@@ -104,22 +107,26 @@ function VerticalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Varia
                         alt={data.name}
                     />
                 </Box>
-                
-                <Flex flexDirection="column" gap={0.5} alignItems="center">
-                    <Text as={Link} to={`/groups/${data.id}`} fontWeight="semibold" noOfLines={1} title={data.name}>{data.name}</Text>
-                    <Text size="sm">{postAmount} postagens</Text>
-                </Flex>
+            </Box>
+
+            <Flex
+                flexDirection="column"
+                gap={0.5}
+                alignItems="center"
+            >
+                <Text as={Link} to={`/groups/${data.id}`} fontWeight="semibold" noOfLines={1} title={data.name}>{data.name}</Text>
+                <Text size="sm">{postAmount} postagens</Text>
             </Flex>
 
-            <StyledButton onClick={() => handleUnfollowGroup(data, onFollow)} marginTop={20} padding="1rem 2rem">
+            <StyledButton onClick={() => handleUnfollowGroup(data, onFollow)} padding="1rem 2rem">
                 {isFollowed ? 'Seguindo' : 'Seguir'}
             </StyledButton>
         </Flex>
     )
 }
 
-export function GroupCard({ variant, data, ...rest }: GroupCardProps) {
-    const [isFollowed, setIsFollowed] = useState(true);
+export function GroupCard({ variant = "horizontal", data, ...rest }: GroupCardProps) {
+    const [isFollowed, setIsFollowed] = useState(false);
     const [postAmount, setPostAmount] = useState(0);
 
     useEffect(() => {
@@ -127,9 +134,9 @@ export function GroupCard({ variant, data, ...rest }: GroupCardProps) {
     }, []);
 
     async function getGroupPostAmount() {
-        const groupPostAmount = await GroupRepository.getPostAmountByGroup(data.id);
+        const { postAmount } = await countGroupPosts(data.id!);
 
-        setPostAmount(groupPostAmount);
+        setPostAmount(postAmount);
     }
 
     return variant === 'horizontal' ? (
@@ -137,8 +144,4 @@ export function GroupCard({ variant, data, ...rest }: GroupCardProps) {
     ) : (
         <VerticalCard data={data} isFollowed={isFollowed} onFollow={setIsFollowed} postAmount={postAmount} {...rest} />
     );
-}
-
-GroupCard.defaultProps = {
-    variant: "horizontal",
 }

@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { Avatar, Box, BoxProps, Flex, Image, Text } from "@chakra-ui/react";
 
-import { CircledButton } from '../../../commons/CircledButton';
+import { CircledButton } from '../../../../commons/CircledButton';
 import { Link } from 'react-router-dom';
-import { Post } from '../../../../services/database/entities/post';
+import { Post } from '../../../../../services/database/entities/post';
 
 interface ProfileFavoriteCardProps extends BoxProps {
     data: Post;

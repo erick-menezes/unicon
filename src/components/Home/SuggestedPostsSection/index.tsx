@@ -6,6 +6,7 @@ import { getAllPosts } from "../../../services/firestore/use-cases/posts/get-all
 import { DividerHorizontal } from "../../Divider";
 import { Flex, Heading } from "@chakra-ui/react";
 import { PostCardWithInteraction } from "../../commons/PostCardWithInteraction";
+import { PostCardWithInteractionSkeleton } from "../../commons/PostCardWithInteraction/skeleton";
 
 export function SuggestedPostsSection() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -26,15 +27,18 @@ export function SuggestedPostsSection() {
 
 
             <Flex flexDirection="column" gap={8}>
-                {posts.map((post) => (
-                    <Fragment key={post.id}>
-                        <PostCardWithInteraction
-                            postData={post}
-                        />
+                {(posts.length > 0) ?
+                    posts.map((post) => (
+                        <Fragment key={post.id}>
+                            <PostCardWithInteraction
+                                postData={post}
+                            />
 
-                        <DividerHorizontal />
-                    </Fragment>
-                ))}
+                            <DividerHorizontal />
+                        </Fragment>
+                    )) :
+                        <PostCardWithInteractionSkeleton />
+                }
             </Flex>
         </Flex>
     );

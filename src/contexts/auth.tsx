@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, MutableRefObject, ReactNode, useContext, useEffect, useRef, useState } from "react";
 
 import { getUserAccount } from "../services/firestore/use-cases/users/get-user-account";
 import { registerAccount } from "../services/firestore/use-cases/users/register-account";
@@ -33,7 +33,7 @@ interface AuthContextValueType {
     logout: () => void;
     userAuthSession: User | null;
     userData: UserData | null;
-    isAuthenticated: boolean;
+    isAuthenticated: MutableRefObject<boolean>;
 }
 
 const AuthContext = createContext({} as AuthContextValueType);
@@ -43,21 +43,24 @@ const auth = getAuth(firebaseApp);
 export function AuthProvider({ children }: AuthProviderProps) {
     const [userAuthSession, setUserAuthSession] = useState<User | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const isAuthenticated = useRef(false);
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState<ErrorDataType>({ message: '', code: '' });
 
     useEffect(() => {
         const unsubscribe = getAuth().onAuthStateChanged(async (userSession) => {
             if (userSession) {
                 setUserAuthSession(userSession);
-                setIsAuthenticated(true);
+                // setIsAuthenticated(true);
+                isAuthenticated.current = true;
 
                 const { user } = await getUserAccount(userSession.uid, "authUID");
 
                 setUserData(user);
             } else {
                 setUserAuthSession(null);
-                setIsAuthenticated(false);
+                // setIsAuthenticated(false);
+                isAuthenticated.current = false
             }
         });
 

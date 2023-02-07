@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { Box } from "@chakra-ui/react";
 import { KeenSliderOptions, useKeenSlider } from "keen-slider/react";
@@ -20,6 +20,12 @@ export function Carousel({ children, options }: PropsWithChildren<CarouselProps>
     const { isMobile } = useBreakpoint();
     const [currentSlide, setCurrentSlide] = useState(0);
 
+    useEffect(() => {
+        if (instanceRef.current) {
+            instanceRef.current.update();
+        }
+    }, [children]);
+
     function showPreviousSlide(e: any) {
         e.stopPropagation() || instanceRef.current?.prev();
     }
@@ -27,6 +33,8 @@ export function Carousel({ children, options }: PropsWithChildren<CarouselProps>
     function showNextSlide(e: any) {
         e.stopPropagation() || instanceRef.current?.next()
     }
+
+    console.log('debug sliderRef', instanceRef);
 
     return (
         <Box ref={sliderRef} className="keen-slider">

@@ -8,6 +8,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { ProfileFavoriteCard } from "../../Profile/ProfileInfo/components/ProfileFavoriteCard";
 import { Carousel } from "../../commons/Carousel";
 import { Post } from '../../../services/database/entities/post';
+import { ProfileFavoriteCardSkeleton } from '../../Profile/ProfileInfo/components/ProfileFavoriteCard/skeleton';
 
 interface PostsDataType {
     trending: Post[];
@@ -45,18 +46,18 @@ export function MainInformationsCarouselSection() {
             </TabList>
             <TabPanels>
                 <TabPanel>
-                    {posts?.trending?.length > 0 && (
-                        <Carousel
-                            options={{
-                                mode: "snap",
-                                slides: {
-                                    perView: "auto",
-                                    spacing: 30,
-                                    origin: 0.04,
-                                },
-                            }}
-                        >
-                            {posts?.trending?.map((post) => (
+                    <Carousel
+                        options={{
+                            mode: "snap",
+                            slides: {
+                                perView: "auto",
+                                spacing: 30,
+                                origin: 0.04,
+                            },
+                        }}
+                    >
+                        {(posts?.trending?.length > 0)
+                            ? posts?.trending?.map((post) => (
                                 <ProfileFavoriteCard
                                     minWidth={346}
                                     key={post.id}
@@ -65,59 +66,65 @@ export function MainInformationsCarouselSection() {
                                     overflow="initial !important"
                                     className="keen-slider__slide"
                                 />
-                            ))}
-                        </Carousel>
-                    )}
+                            )) : Array.from({ length: 4 }).map((_, index) => (
+                                <ProfileFavoriteCardSkeleton key={`skeleton-${index}`} />
+                            ))
+                        }
+                    </Carousel>
                 </TabPanel>
                 <TabPanel>
-                    {posts?.academicCalendar?.length > 0 && (
-                        <Carousel
-                                options={{
-                                    mode: "snap",
-                                    slides: {
-                                        perView: "auto",
-                                        spacing: 30,
-                                        origin: 0.04,
-                                    },
-                                }}
-                            >
-                                {posts?.academicCalendar?.map((post) => (
-                                    <ProfileFavoriteCard
-                                        minWidth={346}
-                                        key={post.id}
-                                        data={post}
-                                        marginTop={6}
-                                        overflow="initial !important"
-                                        className="keen-slider__slide"
-                                    />
-                                ))}
-                        </Carousel>
-                    )}
+                    <Carousel
+                        options={{
+                            mode: "snap",
+                            slides: {
+                                perView: "auto",
+                                spacing: 30,
+                                origin: 0.04,
+                            },
+                        }}
+                    >
+                        {(posts?.academicCalendar?.length > 0)
+                            ? posts?.academicCalendar?.map((post) => (
+                                <ProfileFavoriteCard
+                                    minWidth={346}
+                                    key={post.id}
+                                    data={post}
+                                    marginTop={6}
+                                    overflow="initial !important"
+                                    className="keen-slider__slide"
+                                />
+                            )) : Array.from({ length: 4 }).map((_, index) => (
+                                <ProfileFavoriteCardSkeleton key={`skeleton-${index}`} />
+                            ))
+                        }
+                    </Carousel>
                 </TabPanel>
                 <TabPanel>
-                    {posts?.financial?.length > 0 && (
-                        <Carousel
-                                options={{
-                                    mode: "snap",
-                                    slides: {
-                                        perView: "auto",
-                                        spacing: 30,
-                                        origin: 0.04,
-                                    },
-                                }}
-                            >
-                                {posts?.financial?.map((post) => (
-                                    <ProfileFavoriteCard
-                                        minWidth={346}
-                                        key={post.id}
-                                        data={post}
-                                        marginTop={6}
-                                        overflow="initial !important"
-                                        className="keen-slider__slide"
-                                    />
-                                ))}
-                        </Carousel>
-                    )}
+                    <Carousel
+                        options={{
+                            mode: "snap",
+                            slides: {
+                                perView: "auto",
+                                spacing: 30,
+                                origin: 0.04,
+                            },
+                        }}
+                    >
+                        {(posts?.financial?.length > 0)
+                            ? posts?.financial?.map((post) => (
+                                <ProfileFavoriteCard
+                                    minWidth={346}
+                                    key={post.id}
+                                    data={post}
+                                    marginTop={6}
+                                    overflow="initial !important"
+                                    className="keen-slider__slide"
+                                />
+                            )) : Array.from({ length: 4 }).map((_, index) => (
+                                <ProfileFavoriteCardSkeleton key={`skeleton-${index}`} />
+                            ))
+                        }
+                    </Carousel>
                 </TabPanel>
             </TabPanels>
         </Tabs>

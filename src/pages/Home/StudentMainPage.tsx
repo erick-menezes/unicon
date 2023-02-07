@@ -1,5 +1,5 @@
 
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
 
 import { SuggestedPostsSection } from "../../components/Home/SuggestedPostsSection";
 import { GroupsSection } from "../../components/Home/GroupsSection";
@@ -24,7 +24,20 @@ export function StudentMainPage() {
                 paddingTop={10}
                 paddingBottom={10}
             >
-                <Heading as="h2">Olá, {firstName}!</Heading>
+                <Heading as="h2" display="flex" gap={2}>
+                    Olá,
+                    {
+                        <Skeleton
+                            width="100%"
+                            maxWidth={120}
+                            isLoaded={Boolean(firstName)}
+                            startColor="gray.200"
+                            endColor="gray.300"
+                        >
+                            {firstName}!
+                        </Skeleton>
+                    }
+                </Heading>
                 <Text lineHeight={10}>Veja aqui as novidades e informações e fique por dentro de tudo que acontece.</Text>
 
                 <MainInformationsCarouselSection />

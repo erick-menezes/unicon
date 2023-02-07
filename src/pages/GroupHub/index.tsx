@@ -115,7 +115,13 @@ export function GroupHub() {
 
                         {categoryFetchLoading
                             ? Array.from({ length: 3 }).map((_, index) => (
-                                <Skeleton key={`skeleton_${index}`} height={10} borderRadius={8} startColor="gray.200" endColor="gray.300" />
+                                <Skeleton
+                                    key={`skeleton_${index}`}
+                                    height={10}
+                                    borderRadius={8}
+                                    startColor="gray.200"
+                                    endColor="gray.300"
+                                />
                             ))
                             : categoryList.map((category) => (
                                 <StyledButton

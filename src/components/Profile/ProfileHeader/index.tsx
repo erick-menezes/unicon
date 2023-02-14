@@ -28,7 +28,7 @@ export function ProfileHeader() {
                 position="absolute"
                 bottom={showChangeCoverText ? 4 : 0}
                 right={showChangeCoverText ? 4 : 10}
-                background="blue.300"
+                background="cyan.300"
                 boxShadow="0px 0px 10px 1px rgba(0, 0, 0, 0.25)"
                 color="white"
                 padding="5px 10px 5px 10px"

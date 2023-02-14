@@ -8,7 +8,7 @@ export function InputWithBlueLabel({ labelTitle, ...rest }: InputWithBlueLabelPr
     return (
         <Box position="relative">
             <Box
-                background="blue.500"
+                background="cyan.500"
                 marginLeft={2}
                 padding="0.5rem 2rem 0.5rem 2rem"
                 width="fit-content"

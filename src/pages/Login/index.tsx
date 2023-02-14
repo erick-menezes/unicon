@@ -57,11 +57,11 @@ export function Login() {
                 <StyledButton type="submit">
                     Entrar
                 </StyledButton>
-                
+
                 <Text
                     as={Link}
                     to="/"
-                    color="blue.300"
+                    color="cyan.300"
                     fontWeight="600"
                     _hover={{
                         textDecoration: "underline",

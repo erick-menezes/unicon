@@ -29,7 +29,7 @@ export function UserMenu() {
             <MenuButton as="button">
                 <Avatar
                     name={userData?.name}
-                    src={`${process.env.PUBLIC_URL}assets/img/me.jpg`}
+                    src={userData?.profileUrl ?? undefined}
                     width={42}
                     height={42}
                 />

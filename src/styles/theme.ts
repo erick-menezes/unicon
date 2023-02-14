@@ -54,6 +54,10 @@ export const theme = extendTheme({
         },
 
         "blue": {
+            500: "#8E8DBE",
+        },
+
+        "cyan": {
             100: "#D0F6FE",
             300: "#88E9FF",
             500: "#63E1FD",
@@ -91,8 +95,8 @@ export const theme = extendTheme({
                 'h4': { fontSize: 22 },
                 'h5': { fontSize: 20 },
                 'h6': { fontSize: 18 },
-                'a': { textDecoration: 'underline', color: 'blue.500' },
-                'a:hover': { color: 'blue.800' },
+                'a': { textDecoration: 'underline', color: 'cyan.500' },
+                'a:hover': { color: 'cyan.800' },
             },
             'body': {
                 bg: 'white',
@@ -111,11 +115,11 @@ export const theme = extendTheme({
                 borderRadius: '10px',
             },
             '::-webkit-scrollbar-thumb': {
-                background: 'blue.500',
+                background: 'cyan.500',
                 borderRadius: '10px',
             },
             '::-webkit-scrollbar-thumb:hover': {
-                background: 'blue.800',
+                background: 'cyan.800',
             },
             '.ck-rounded-corners .ck.ck-balloon-panel, .ck.ck-balloon-panel.ck-rounded-corners': {
                 'z-index': '10055 !important'
@@ -131,7 +135,7 @@ export const theme = extendTheme({
                 'h5': { fontSize: 20 },
                 'h6': { fontSize: 18 },
                 'ul, ol': { paddingLeft: '1.5em' },
-                'a': { textDecoration: 'underline', color: 'blue.500' }
+                'a': { textDecoration: 'underline', color: 'cyan.500' }
             }
         }),
     },

@@ -61,13 +61,24 @@ export function GroupHub() {
 
                     <Text>Encontre todos os grupos que possam ser de seu interesse aqui!</Text>
                 </Flex>
-                <StyledButton gap={2} maxWidth="225px" paddingTop={0} paddingBottom={0}>
-                     <Icon
-                        icon="ant-design:usergroup-add-outlined"
-                        fontSize={32}
-                     />
-                    Criar grupo
-                </StyledButton>
+                <Flex gap={4}>
+                    <StyledButton gap={2} maxWidth="225px" paddingTop={0} paddingBottom={0}>
+                        <Icon
+                            icon="ant-design:usergroup-add-outlined"
+                            fontSize={32}
+                        />
+                        Criar grupo
+                    </StyledButton>
+
+                    <StyledButton gap={2} maxWidth="225px" paddingTop={0} paddingBottom={0}>
+                        <Icon
+                            icon="carbon:category-new"
+                            fontSize={28}
+                        />
+
+                        Criar categoria
+                    </StyledButton>
+                </Flex>
             </Flex>
 
             <DividerHorizontal />
@@ -95,12 +106,12 @@ export function GroupHub() {
                         />
 
                         <StyledButton
-                            background="blue.500"
+                            background="cyan.500"
                             boxShadow="none"
                             color="white"
                             fontWeight="bold"
                             _hover={{
-                                background: 'blue.600'
+                                background: 'cyan.600'
                             }}
                             paddingTop={0}
                             paddingBottom={0}
@@ -143,7 +154,7 @@ export function GroupHub() {
                 </Flex>
 
                 {groupFetchLoading ? (
-                    <Spinner size='lg' margin="auto" color="blue.600" thickness="3px" />
+                    <Spinner size='lg' margin="auto" color="cyan.600" thickness="3px" />
                 ) : (
                     <Grid gridTemplateColumns="repeat(3, 1fr)" gap={4}>
                         {groupList.map((group) => (

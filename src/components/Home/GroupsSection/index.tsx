@@ -6,6 +6,7 @@ import { Carousel } from "../../commons/Carousel";
 import { GroupCard } from "../../commons/GroupCard";
 import { Group } from "../../../services/database/models/group";
 import { getAllGroups } from "../../../services/firestore/use-cases/groups/get-all-groups";
+import { GroupCardSkeleton } from "../../commons/GroupCard/skeleton";
 
 export function GroupsSection() {
     const [suggestedGroups, setSuggestedGroups] = useState<Group[]>([]);
@@ -27,27 +28,29 @@ export function GroupsSection() {
                 <Heading as="h2" marginBottom={8}>Grupos</Heading>
             </Link>
 
-            {suggestedGroups.length > 0 && (
-                <Carousel
-                    options={{
-                        mode: "snap",
-                        slides: {
-                            perView: "auto",
-                            spacing: 30,
-                            origin: 0.04,
-                        },
-                    }}
-                >
-                    {suggestedGroups.map((group) => (
+            <Carousel
+                options={{
+                    mode: "snap",
+                    slides: {
+                        perView: "auto",
+                        spacing: 30,
+                        origin: 0.04,
+                    },
+                }}
+            >
+                {(suggestedGroups.length > 0)
+                    ? suggestedGroups.map((group) => (
                         <GroupCard
                             key={group.id}
                             data={group}
                             variant="vertical"
                             className="keen-slider__slide"
                         />
-                    ))}
-                </Carousel>
-            )}
+                   )) : Array.from({ length: 4 }).map((_, index) => (
+                        <GroupCardSkeleton variant="vertical" key={`skeleton-${index}`} />
+                    ))
+                }
+            </Carousel>
 
         </Flex>
     );

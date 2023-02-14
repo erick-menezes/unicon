@@ -35,7 +35,7 @@ export function LandingContainer({ children }: LandingContainerProps) {
             </Flex>
 
             {!isMobile && (
-                <Flex background="blue.300" width="50%">
+                <Flex background="cyan.300" width="50%">
                     <Image objectFit="cover" maxWidth="100%" height="auto" src={process.env.PUBLIC_URL + 'assets/img/library.jpg'} alt="Test" />
                 </Flex>
             )}

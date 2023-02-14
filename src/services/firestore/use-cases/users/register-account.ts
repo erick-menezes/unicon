@@ -5,6 +5,7 @@ interface RegisterAccountRequest {
     name: string;
     courseId: string;
     authUID: string;
+    profileUrl?: string | null;
 }
 
 interface RegisterAccountResponse {
@@ -13,12 +14,13 @@ interface RegisterAccountResponse {
 
 const firestoreUserRepository = new FirestoreUserRepository();
 
-export async function registerAccount({ courseId, email, name, authUID }: RegisterAccountRequest): Promise<RegisterAccountResponse> {
+export async function registerAccount({ courseId, email, name, authUID, profileUrl }: RegisterAccountRequest): Promise<RegisterAccountResponse> {
     const userId = await firestoreUserRepository.create({
         authUID,
         courseId,
         email,
         name,
+        profileUrl,
     });
 
     return { userId };

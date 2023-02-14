@@ -44,14 +44,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [userAuthSession, setUserAuthSession] = useState<User | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
     const isAuthenticated = useRef(false);
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState<ErrorDataType>({ message: '', code: '' });
 
     useEffect(() => {
         const unsubscribe = getAuth().onAuthStateChanged(async (userSession) => {
             if (userSession) {
                 setUserAuthSession(userSession);
-                // setIsAuthenticated(true);
                 isAuthenticated.current = true;
 
                 const { user } = await getUserAccount(userSession.uid, "authUID");
@@ -59,7 +57,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 setUserData(user);
             } else {
                 setUserAuthSession(null);
-                // setIsAuthenticated(false);
                 isAuthenticated.current = false
             }
         });
@@ -76,7 +73,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     courseId,
                     email,
                     name,
-                    authUID: user.uid
+                    authUID: user.uid,
+                    profileUrl: user.photoURL,
                 });
 
                 const { user: userData } = await getUserAccount(userCredential.user.uid, "authUID");

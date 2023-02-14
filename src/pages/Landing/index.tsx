@@ -31,7 +31,7 @@ export function Landing() {
                 <Text
                     as={Link}
                     to="/login"
-                    color="blue.500"
+                    color="cyan.500"
                     fontWeight="600"
                     _hover={{
                         textDecoration: "underline",
@@ -57,7 +57,7 @@ export function Landing() {
                         background: "gray.100"
                     }}
                 >
-                    <Icon 
+                    <Icon
                         icon="logos:microsoft-icon"
                         fontSize={30}
                     />

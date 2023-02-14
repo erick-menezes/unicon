@@ -34,9 +34,6 @@ export class FirestoreGroupRepository implements GroupRepository {
 
         const groups = groupsByCategory.docs.map((group) => ({ ...group.data(), id: group.id }));
 
-        console.log('categoryId', categoryId);
-        console.log('query', groups);
-
         return groups;
     };
 

@@ -101,7 +101,7 @@ export function PostInputSection({ contentEditor, onChangeTitle, title, onChange
                         to="/post/new"
                         display="inline"
                         marginLeft={1}
-                        color="blue."
+                        color="cyan."
                     >
                         abra em outra guia
                     </Text>

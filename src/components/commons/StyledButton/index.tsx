@@ -9,7 +9,7 @@ interface StyledButtonProps extends ButtonProps {
 export function StyledButton({ children, ...rest }: StyledButtonProps) {
     return (
         <Button
-            background="blue.500"
+            background="cyan.500"
             color="white"
             width="100%"
             paddingTop={7}
@@ -17,7 +17,7 @@ export function StyledButton({ children, ...rest }: StyledButtonProps) {
             boxShadow="10px 10px 20px rgba(0, 0, 0, 0.12)"
             borderRadius={"xl"}
             _hover={{
-                background: "blue.600",
+                background: "cyan.600",
             }}
             _active={{}}
             {...rest}

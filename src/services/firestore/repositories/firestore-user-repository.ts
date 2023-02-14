@@ -34,7 +34,7 @@ export class FirestoreUserRepository implements UserRepository {
         return user;
     }
 
-    async create({ authUID, courseId, email, name }: UserRecordFormat): Promise<string> {
+    async create({ authUID, courseId, email, name, profileUrl }: UserRecordFormat): Promise<string> {
         const roleId = await this.firestoreRoleRepository.findByName('User');
 
         if (!roleId?.id) {
@@ -51,6 +51,7 @@ export class FirestoreUserRepository implements UserRepository {
                 roleId: roleId.id,
                 disciplines: [],
                 createdAt: serverTimestamp(),
+                profileUrl: profileUrl ?? null,
             }
         ).then((data) => data.id);
     }

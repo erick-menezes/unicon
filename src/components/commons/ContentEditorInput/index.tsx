@@ -33,8 +33,6 @@ const editorConfiguration: EditorConfig  = {
 export function ContentEditorInput({ contentText, onChangeContent }: ContentEditorInputProps) {
     const { userAuthSession } = useAuth();
 
-    console.log('contentText', contentText);
-
     return (
         <CKEditor
             editor={ ClassicEditor }

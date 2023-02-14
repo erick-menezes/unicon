@@ -21,16 +21,16 @@ export function ProfileInfoField({ fieldName, fieldData, isFieldEditable }: Prof
 
             {isFieldEditable && (
                 <Button
-                    background="blue.500"
+                    background="cyan.500"
                     borderRadius="100%"
                     padding={2}
                     color="white"
                     transition="background .3s"
                     _hover={{
-                        background: 'blue.800'
+                        background: 'cyan.800'
                     }}
                     _active={{
-                        background: "blue.800",
+                        background: "cyan.800",
                     }}
                 >
                     <Icon icon="ci:edit" fontSize={20} />

@@ -34,8 +34,6 @@ export function Carousel({ children, options }: PropsWithChildren<CarouselProps>
         e.stopPropagation() || instanceRef.current?.next()
     }
 
-    console.log('debug sliderRef', instanceRef);
-
     return (
         <Box ref={sliderRef} className="keen-slider">
             {children}

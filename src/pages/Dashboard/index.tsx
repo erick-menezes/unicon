@@ -8,7 +8,7 @@ import { Icon } from "@iconify/react";
 import { DividerHorizontal } from "../../components/Divider";
 import { useAuth } from "../../contexts/auth";
 
-export function AdminMainPage() {
+export function Dashboard() {
     const { userData } = useAuth();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const cancelRef = useRef(null);
@@ -54,9 +54,6 @@ export function AdminMainPage() {
                 </StyledButton>
 
                 <DividerHorizontal marginTop={4} />
-
-                {/* <Heading as="h2">Tu é bom.</Heading>
-                <Text size="lg">Tu é bom.</Text> */}
             </Flex>
 
             <PostDialog onClose={onClose} isOpen={isOpen} cancelRef={cancelRef} />

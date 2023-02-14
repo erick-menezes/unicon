@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../contexts/auth";
 
 import { Link } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import { Icon } from "@iconify/react";
 
 
 export function Header() {
+    const { userData } = useAuth();
     const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
 
     useEffect(() => {
@@ -37,44 +39,77 @@ export function Header() {
             background="white"
             border="1px solid"
             borderColor={isBackgroundVisible ? "blackAlpha.300" : "white"}
-            justifyContent="space-between"
             alignItems="center"
         >
-            <Link to="/home">
-                <Icon icon="emojione:letter-u" fontSize={52} />
-            </Link>
+            <Flex gap={8}>
+                <Link to="/home">
+                    <Icon icon="emojione:letter-u" fontSize={52} />
+                </Link>
 
-            <InputGroup maxWidth={400}>
-                <Input
-                    background="gray.100"
-                    _placeholder={{
-                        color:'darkgray'
+                <InputGroup maxWidth={300}>
+                    <Input
+                        background="gray.100"
+                        _placeholder={{
+                            color:'darkgray'
+                        }}
+                        borderRadius={30}
+                        height={12}
+                        paddingInline={6}
+                        placeholder="Pesquisar no Unicon"
+                    />
+                    <InputRightElement
+                        height="100%"
+                        paddingRight={4}
+                        paddingBottom={1}
+                        children={
+                            <Icon
+                                icon="eva:search-fill"
+                                fontSize={28}
+                                color="darkgray"
+                            />
+                        }
+                    />
+                </InputGroup>
+            </Flex>
+
+            <Flex margin="auto" gap={4}>
+                <Text
+                    as={Link}
+                    to="/home"
+                    fontWeight="bold"
+                    _hover={{
+                        textDecoration: 'underline'
                     }}
-                    borderRadius={30}
-                    height={12}
-                    paddingInline={6}
-                    placeholder="Pesquisar no Unicon"
-                />
-                <InputRightElement
-                    top="50%"
-                    transform="translateY(-50%)"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    paddingRight={4}
-                    children={
-                        <Icon
-                            icon="eva:search-fill"
-                            fontSize={28}
-                            color="darkgray"
-                        />
-                    }
-                />
-            </InputGroup>
+                >
+                    Início
+                </Text>
+
+                {(userData?.disciplines.length ?? 0) > 0 && (
+                    <Text
+                        as={Link}
+                        to="/dashboard"
+                        fontWeight="bold"
+                        _hover={{
+                            textDecoration: 'underline'
+                        }}
+                    >
+                        Dashboard
+                    </Text>
+                )}
+
+                <Text
+                    as={Link}
+                    to="/groups"
+                    fontWeight="bold"
+                    _hover={{
+                        textDecoration: 'underline'
+                    }}
+                >
+                    Grupos
+                </Text>
+            </Flex>
 
             <Flex alignItems="center" gap={5}>
-                <Text as={Link} to="/groups" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Grupos</Text>
-                <Text as={Link} to="/categories" fontWeight="bold" _hover={{ textDecoration: 'underline' }}>Categorias</Text>
                 <NotificationMenu />
                 <UserMenu />
             </Flex>

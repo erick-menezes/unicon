@@ -2,6 +2,7 @@ import { User } from "../models/user";
 
 export interface Post {
     id?: string;
+    coverImage?: string;
     authorId: string;
     createdAt: Date;
     groupId: string;

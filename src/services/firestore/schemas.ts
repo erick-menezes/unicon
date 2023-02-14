@@ -9,6 +9,7 @@ import { PostSave } from "../database/models/post-save";
 import { PostView } from "../database/models/post-view";
 import { Role } from "../database/models/role";
 import { Course } from "../database/models/course";
+import { Notification } from "../database/models/notification";
 
 export const db = {
     posts: dataPoint<Post>('posts'),
@@ -20,4 +21,5 @@ export const db = {
     users: dataPoint<User>('users'),
     roles: dataPoint<Role>('roles'),
     courses: dataPoint<Course>('courses'),
+    notifications: dataPoint<Notification>('notifications'),
 }

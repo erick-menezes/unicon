@@ -10,7 +10,7 @@ export const createGroup = (categoryName: string, options: any[], setValue: Reac
                     justifyContent="space-between"
                 >
                     <Flex gap={2} alignItems="center">
-                        <Tag background="blue.500" color="white">{options.length}</Tag>
+                        <Tag background="cyan.500" color="white">{options.length}</Tag>
                         <Text size="sm">{categoryName}</Text>
                     </Flex>
 

@@ -37,7 +37,7 @@ function HorizontalCard({ data, isFollowed, onFollow, postAmount, ...rest }: Var
             </Flex>
 
             <Box>
-                <Tooltip background="blue.500" borderRadius={12} color="white" label={isFollowed ? 'Sair do grupo' : 'Entrar no grupo'}>
+                <Tooltip background="cyan.500" borderRadius={12} color="white" label={isFollowed ? 'Sair do grupo' : 'Entrar no grupo'}>
                     <Button
 
                         background="transparent"

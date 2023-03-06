@@ -5,5 +5,4 @@ import { Group } from "../../../../services/database/models/group";
 
 export function handleUnfollowGroup(data: Group, setIsFollowed: Dispatch<React.SetStateAction<boolean>>) {
     setIsFollowed(previousState => !previousState);
-    console.log('Deixou de seguir o grupo ' + data.name);
 }

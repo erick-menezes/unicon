@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/auth";
-import { Controller, useForm } from "react-hook-form";
-
 import { Link, useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
+import { useAuth } from "../../contexts/auth";
+import { useBreakpoint } from "../../contexts/breakpoint";
+
+import { Course } from "../../services/database/models/course";
+
+import { getAllCourses } from "../../services/firestore/use-cases/courses/get-all-courses";
 
 import { LandingContainer } from "../../components/Landing/LandingContainer";
 import { InputText } from "../../components/commons/form/InputText";
@@ -12,9 +16,6 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 
 import '@material/react-text-field/index.scss';
-import { useBreakpoint } from "../../contexts/breakpoint";
-import { getAllCourses } from "../../services/firestore/use-cases/courses/get-all-courses";
-import { Course } from "../../services/database/models/course";
 
 export function Register() {
     const { signUpWithEmailAndPassword } = useAuth();

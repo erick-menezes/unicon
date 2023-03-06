@@ -40,7 +40,7 @@ export function Landing() {
                     Já tenho conta
                 </Text>
 
-                <Flex gap={4} alignItems="center" color="gray.200" marginY={6}>
+                {/* <Flex gap={4} alignItems="center" color="gray.200" marginY={6}>
                     <Box borderBottom="1px solid" height={1} width="80px" />
                     ou
                     <Box borderBottom="1px solid" height={1} width="80px" />
@@ -62,7 +62,7 @@ export function Landing() {
                         fontSize={30}
                     />
                     Entrar com a Microsoft
-                </StyledButton>
+                </StyledButton> */}
             </Flex>
         </LandingContainer>
     );

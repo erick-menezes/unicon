@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Avatar, Box, BoxProps, Flex, Image, Text } from "@chakra-ui/react";
 
@@ -6,17 +6,55 @@ import { CircledButton } from '../../../../commons/CircledButton';
 import { Link } from 'react-router-dom';
 import { Post } from '../../../../../services/database/entities/post';
 import { Icon } from '@iconify/react';
+import { unsavePost } from '../../../../../services/firestore/use-cases/posts/unsave-post';
+import { savePost } from '../../../../../services/firestore/use-cases/posts/save-post';
 
 interface ProfileFavoriteCardProps extends BoxProps {
     data: Post;
 }
 
 export function ProfileFavoriteCard({ data, ...rest }: ProfileFavoriteCardProps) {
-    const userFavoritePostsIdsStaticData = [data.id];
-    const [postIsFavorited, setPostIsFavorited] = useState<boolean>(() => userFavoritePostsIdsStaticData.includes(data.id));
+    const [postSaveId, setPostSaveId] = useState<string | null>(null);
 
-    function handleFavoritePost() {
-        setPostIsFavorited((previousValue) => !previousValue);
+    useEffect(() => {
+        getPostDataFromUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    async function getPostDataFromUser() {
+        setPostSaveId(data.interactions.postSaveId);
+    }
+
+    async function handleSavePost() {
+        try {
+            if ((postSaveId?.length ?? 0) > 0) {
+                await handleRemoveSave();
+            } else {
+                await handleAddSave();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function handleRemoveSave() {
+        if (!postSaveId) {
+            return;
+        }
+
+        await unsavePost(postSaveId);
+
+        setPostSaveId('');
+    }
+
+    async function handleAddSave() {
+        if (!data.id) {
+            return;
+        }
+
+        const { postSaveId } = await savePost(data.id);
+
+        setPostSaveId(postSaveId);
     }
 
     return (
@@ -64,8 +102,8 @@ export function ProfileFavoriteCard({ data, ...rest }: ProfileFavoriteCardProps)
                     position="absolute"
                     top="-10px"
                     right="-10px"
-                    onClick={handleFavoritePost}
-                    icon={postIsFavorited ? "bi:bookmark-fill" : "bi:bookmark"}
+                    onClick={handleSavePost}
+                    icon={postSaveId?.length ? "bi:bookmark-fill" : "bi:bookmark"}
                 />
             </Flex>
 

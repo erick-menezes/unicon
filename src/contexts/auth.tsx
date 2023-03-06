@@ -1,4 +1,4 @@
-import { createContext, MutableRefObject, ReactNode, useContext, useEffect, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from "react";
 
 import { getUserAccount } from "../services/firestore/use-cases/users/get-user-account";
 import { registerAccount } from "../services/firestore/use-cases/users/register-account";
@@ -33,7 +33,7 @@ interface AuthContextValueType {
     logout: () => void;
     userAuthSession: User | null;
     userData: UserData | null;
-    isAuthenticated: MutableRefObject<boolean>;
+    isAuthenticated: boolean;
 }
 
 const AuthContext = createContext({} as AuthContextValueType);
@@ -43,7 +43,7 @@ const auth = getAuth(firebaseApp);
 export function AuthProvider({ children }: AuthProviderProps) {
     const [userAuthSession, setUserAuthSession] = useState<User | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
-    const isAuthenticated = useRef(false);
+    const isAuthenticated = useRef<boolean>(false);
     const [error, setError] = useState<ErrorDataType>({ message: '', code: '' });
 
     useEffect(() => {
@@ -106,8 +106,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 logout,
                 userAuthSession,
                 userData,
-                isAuthenticated,
                 error,
+                isAuthenticated: isAuthenticated.current,
             }}
         >
             {children}

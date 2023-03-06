@@ -7,8 +7,9 @@ export function Group() {
     const currentGroup = followedGroupsStaticData.filter((group) => group.id === groupId);
 
     return (
-        <Flex>
-            {currentGroup && (
+        <Flex alignItems="center" justifyContent="center" paddingTop={12}>
+            <Heading>Página de grupo (em desenvolvimento)</Heading>
+            {currentGroup.length > 0 && (
                 <Heading>{currentGroup[0].title}</Heading>
             )}
         </Flex>

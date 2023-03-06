@@ -33,12 +33,12 @@ export function NotificationMenu() {
                     fontSize={28}
                 />
 
-                <Circle
+                {/* <Circle
                     background="red"
                     size={4}
                     position="absolute"
                     bottom={4}
-                />
+                /> */}
             </MenuButton>
             <MenuList background="white" width={360} maxWidth={360} paddingTop={4}>
                 <Text paddingLeft={6} fontSize="2xl" fontWeight="bold" marginBottom={4}>Notificações</Text>

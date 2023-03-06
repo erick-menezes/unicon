@@ -1,17 +1,17 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
-
 import { useNavigate } from "react-router-dom";
-import { LandingContainer } from "../../components/Landing/LandingContainer";
-
-import '@material/react-text-field/index.scss';
-
 import { useForm } from "react-hook-form";
+import { useBreakpoint } from "../../contexts/breakpoint";
+import { useAuth } from "../../contexts/auth";
+
+import { Link } from "react-router-dom";
+
+import { LandingContainer } from "../../components/Landing/LandingContainer";
 import { InputText } from "../../components/commons/form/InputText";
 import { StyledButton } from "../../components/commons/StyledButton";
-import { Link } from "react-router-dom";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import { useAuth } from "../../contexts/auth";
-import { useBreakpoint } from "../../contexts/breakpoint";
+
+import '@material/react-text-field/index.scss';
 
 export function Login() {
     const { control, handleSubmit } = useForm();

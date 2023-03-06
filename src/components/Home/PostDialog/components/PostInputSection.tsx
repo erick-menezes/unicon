@@ -2,18 +2,12 @@ import { useState, useEffect } from 'react';
 
 import { createGroup, SelectInput } from '../../../commons/form/SelectInput';
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
-// import { InputWithBlueLabel } from '../../../commons/form/InputWithBlueLabel';
 import { Icon } from '@iconify/react';
 import { ContentEditorInput, ContentEditorInputProps } from '../../../commons/ContentEditorInput';
 import { DividerHorizontal } from '../../../Divider';
 import { getAllCategoriesWithGroups } from '../../../../services/firestore/use-cases/categories/get-categories-with-groups';
 import { MultiValue } from 'react-select';
 import { SelectOptionData } from '..';
-
-// interface SelectOptionDataFormatted {
-//     label: JSX.Element;
-//     options: SelectOptionData[];
-// }
 
 interface PostInputSectionProps {
     contentEditor: ContentEditorInputProps;

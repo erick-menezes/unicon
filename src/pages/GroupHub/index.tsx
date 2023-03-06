@@ -60,8 +60,10 @@ export function GroupHub() {
                     </Heading>
 
                     <Text>Encontre todos os grupos que possam ser de seu interesse aqui!</Text>
+
+                    <Text color="orange.500" fontWeight="semibold">Atenção: O filtro ainda não está em funcionamento, está apenas representado visualmente.</Text>
                 </Flex>
-                <Flex gap={4}>
+                {/* <Flex gap={4}>
                     <StyledButton gap={2} maxWidth="225px" paddingTop={0} paddingBottom={0}>
                         <Icon
                             icon="ant-design:usergroup-add-outlined"
@@ -78,7 +80,7 @@ export function GroupHub() {
 
                         Criar categoria
                     </StyledButton>
-                </Flex>
+                </Flex> */}
             </Flex>
 
             <DividerHorizontal />

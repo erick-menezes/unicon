@@ -12,8 +12,6 @@ export function Home() {
 
     const firstName = userData?.name?.split(' ')[0];
 
-    console.log('userData', userData);
-
     return (
         <Flex alignItems="center" justifyContent="center">
             <Flex
